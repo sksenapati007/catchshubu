@@ -29,6 +29,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to GitHub Pages
-        uses: github/pages-deploy-action@v1
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
+          clean: true

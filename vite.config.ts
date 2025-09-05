@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
   ],
-   base: "catchshubu",
+  base: "/catchshubu/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
