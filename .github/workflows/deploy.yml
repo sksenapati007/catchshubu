@@ -49,9 +49,9 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      - name: Copy CNAME file from main to gh-pages
+      - name: Create CNAME file in gh-pages
         run: |
-          cp ./CNAME ./gh-pages/CNAME
+          echo "catchshubu.dev" > ./gh-pages/CNAME
 
       - name: Commit CNAME to gh-pages branch
         run: |
