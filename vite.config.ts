@@ -9,8 +9,9 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [
-    react()
+    react(),
   ],
+   base: "catchshubu",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
