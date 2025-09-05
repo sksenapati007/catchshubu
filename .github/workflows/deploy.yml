@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -33,4 +33,4 @@ jobs:
         with:
           folder: dist
           clean: true
-          token: ${{ secrets.GITHUB_TOKEN }}  # ✅ explicitly use GITHUB_TOKEN
+          token: ${{ secrets.GITHUB_TOKEN }}
