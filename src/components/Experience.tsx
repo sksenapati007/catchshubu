@@ -7,7 +7,7 @@ import { motion } from "framer-motion"
 export function Experience() {
   const experiences = [
     {
-      title: "Software Engineer",
+      title: "Sr. Product Engineer & Innovation",
       company: "Cakewalk Information Technologies LLC",
       location: "Dubai, UAE",
       period: "Sept 2021 - Present",
