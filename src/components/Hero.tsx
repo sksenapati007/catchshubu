@@ -32,7 +32,7 @@ export function Hero() {
     <section
       id="home"
       ref={ref}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pt-20 sm:pt-0"
     >
       {/* Aurora + grid backdrop */}
       <div className="pointer-events-none absolute inset-0 -z-10">
