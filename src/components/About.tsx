@@ -1,138 +1,162 @@
-import { ParallaxSection } from "@/components/ui/parallax-section"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Target, Code, Palette, Globe } from "lucide-react"
+import { SectionShell, SectionHeading } from "@/components/ui/section-shell"
+import { SpotlightCard } from "@/components/ui/spotlight-card"
+import { CreditCard, Radio, Gauge, Compass, GraduationCap, BadgeCheck } from "lucide-react"
 import { motion } from "framer-motion"
 
+const highlights = [
+  {
+    icon: CreditCard,
+    title: "Payments & Fintech",
+    description: "5+ gateways (PayTM, Razorpay, Cashfree…) on a platform doing 10K–100K txns/day — webhooks, retries & reconciliation.",
+    span: "lg:col-span-2",
+  },
+  {
+    icon: Radio,
+    title: "Real-time Infrastructure",
+    description: "RabbitMQ dynamic provisioning, EMQX MQTT (MQTTS+WSS) and SSE pipelines for resilient delivery.",
+    span: "",
+  },
+  {
+    icon: Gauge,
+    title: "Performance at Scale",
+    description: "Optimised 4.2M+ record tables — compound indexing cut query latency ~80% and eliminated timeouts.",
+    span: "",
+  },
+  {
+    icon: Compass,
+    title: "Product Ownership",
+    description: "CSPO-certified with a Google UX credential — owning requirements, roadmap and release, not just code.",
+    span: "lg:col-span-2",
+  },
+]
+
+const skillGroups = [
+  { label: "Languages", items: ["TypeScript", "JavaScript", "Java", "C++", "SQL", "Rust (learning)"] },
+  { label: "Frontend", items: ["React", "Next.js", "Remix", "Angular", "Tailwind CSS", "shadcn/ui", "Flutter", "BBC TAL"] },
+  { label: "Backend", items: ["Node.js", "NestJS (Fastify)", "Express", "Bun", "Supabase", "Firebase"] },
+  { label: "Databases", items: ["PostgreSQL", "MongoDB", "MySQL", "Oracle", "Redis", "Prisma"] },
+  { label: "Messaging & Queue", items: ["RabbitMQ", "EMQX MQTT", "SSE"] },
+  { label: "DevOps & Cloud", items: ["Docker", "GitHub Actions", "GitLab CI/CD", "Render", "fly.io", "OpenTelemetry", "Grafana Tempo"] },
+  { label: "Payments", items: ["PayTM", "Razorpay", "Cashfree", "Webhooks", "Reconciliation"] },
+  { label: "AI & Tooling", items: ["Cursor AI", "Copilot", "n8n", "Ollama", "Multi-repo orchestration"] },
+]
+
+const education = {
+  degree: "B.Tech, Computer Science + MBA in HRM",
+  school: "Siksha O Anusandhan University, Bhubaneswar",
+  year: "2018",
+}
+
+const certifications = [
+  "Certified Scrum Product Owner (CSPO)",
+  "Product Management Certification",
+  "Google UX Design Certificate",
+]
+
+const container = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+}
+const card = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+}
+
 export function About() {
-  const skills = [
-    "Remix JS", "React", "Angular", "Flutter", "TypeScript", "JavaScript", "Node.js",
-    "NextJS", "TailwindCSS", "Shadcn UI", "Prisma", "PostgreSQL",
-    "Redis", "Rabbit MQ", "JWT", "Supabase", "Firebase", "MongoDB", "Express.js",
-    "Git", "Docker", "Payment Gateways", "Cloud Operations", "GraphQL"
-  ]
-
-  const highlights = [
-    {
-      icon: Code,
-      title: "Full-Stack Development",
-      description: "Proficient in modern frontend frameworks and cross-platform mobile development"
-    },
-    {
-      icon: Palette,
-      title: "UI/UX Expertise",
-      description: "Strong focus on user-centered design and creating intuitive interfaces"
-    },
-    {
-      icon: Globe,
-      title: "International Experience",
-      description: "Working across diverse markets with global perspective on tech solutions"
-    },
-    {
-      icon: Target,
-      title: "Product Mindset",
-      description: "Aspiring Technical Product Manager with strategic thinking and execution skills"
-    }
-  ]
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 }
-    }
-  }
-
   return (
-    <ParallaxSection id="about" offset={30}>
-      <motion.div
-        className="text-center mb-12"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        <h2 className="text-3xl font-bold mb-4">About Me</h2>
-        <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          Full Stack Developer with 4+ years of experience building scalable applications, managing teams, and delivering innovative solutions.
-          Expertise in modern web technologies, mobile development, and cloud operations with a focus on user-centric design.
-        </p>
-      </motion.div>
+    <SectionShell id="about">
+      <SectionHeading
+        eyebrow="About"
+        title="Engineer with a product heart"
+        subtitle="Dubai-based Senior Full Stack Engineer with 6+ years delivering scalable B2B platforms across fintech, iGaming and smart-TV — bridging engineering depth with product thinking."
+      />
 
-      {/* Highlights Grid */}
+      {/* Bento highlights */}
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"
-        variants={containerVariants}
+        className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+        variants={container}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-60px" }}
       >
-        {highlights.map((highlight, index) => (
-          <motion.div key={index} variants={itemVariants}>
-            <Card className="shadow-elegant hover:shadow-glow transition-smooth border-border/50 h-full">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <motion.div
-                    className="p-3 rounded-lg bg-accent-soft"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <highlight.icon className="w-6 h-6 text-accent-foreground" />
-                  </motion.div>
-                  <div>
-                    <h3 className="font-semibold mb-2">{highlight.title}</h3>
-                    <p className="text-sm text-muted-foreground">{highlight.description}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+        {highlights.map((h) => (
+          <motion.div key={h.title} variants={card} className={h.span}>
+            <SpotlightCard className="h-full p-6">
+              <div className="mb-4 inline-flex rounded-xl bg-gradient-primary/10 p-3 ring-1 ring-primary/20">
+                <h.icon className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="mb-2 text-lg font-semibold">{h.title}</h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">{h.description}</p>
+            </SpotlightCard>
           </motion.div>
         ))}
       </motion.div>
 
-      {/* Skills */}
+      {/* Categorized skills */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        transition={{ duration: 0.7 }}
         viewport={{ once: true }}
+        className="mt-12"
       >
-        <Card className="shadow-elegant border-border/50">
-          <CardContent className="p-8">
-            <h3 className="font-semibold mb-6 text-center">Core Skills & Technologies</h3>
-            <div className="flex flex-wrap gap-2 justify-center">
-              {skills.map((skill, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  whileHover={{ scale: 1.05 }}
-                  viewport={{ once: true }}
-                >
-                  <Badge
-                    variant="secondary"
-                    className="px-3 py-1 text-sm font-medium hover:bg-accent-soft transition-smooth cursor-default"
+        <p className="mb-6 text-center text-sm font-medium uppercase tracking-widest text-muted-foreground">
+          Technical Skills
+        </p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {skillGroups.map((group) => (
+            <div key={group.label} className="glass rounded-2xl p-4">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
+                {group.label}
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-md border border-border/60 bg-secondary/40 px-2.5 py-1 text-xs text-foreground/90"
                   >
-                    {skill}
-                  </Badge>
-                </motion.div>
-              ))}
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
-          </CardContent>
-        </Card>
+          ))}
+        </div>
       </motion.div>
-    </ParallaxSection>
+
+      {/* Education & Certifications */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+        className="mt-6 grid gap-3 md:grid-cols-2"
+      >
+        <SpotlightCard className="p-6">
+          <div className="mb-3 flex items-center gap-2 text-primary">
+            <GraduationCap className="h-5 w-5" />
+            <span className="text-sm font-semibold uppercase tracking-wider">Education</span>
+          </div>
+          <p className="font-medium text-foreground">{education.degree}</p>
+          <p className="text-sm text-muted-foreground">{education.school}</p>
+          <p className="mt-1 text-sm text-muted-foreground">{education.year}</p>
+        </SpotlightCard>
+
+        <SpotlightCard className="p-6">
+          <div className="mb-3 flex items-center gap-2 text-primary">
+            <BadgeCheck className="h-5 w-5" />
+            <span className="text-sm font-semibold uppercase tracking-wider">Certifications</span>
+          </div>
+          <ul className="space-y-2">
+            {certifications.map((c) => (
+              <li key={c} className="flex items-start gap-2 text-sm text-muted-foreground">
+                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gradient-to-r from-primary to-violet" />
+                {c}
+              </li>
+            ))}
+          </ul>
+        </SpotlightCard>
+      </motion.div>
+    </SectionShell>
   )
 }
