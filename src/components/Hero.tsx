@@ -96,7 +96,7 @@ export function Hero() {
 
         <motion.p
           variants={item}
-          className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
+          className="mx-auto mb-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
         >
           6+ years building scalable B2B platforms across fintech, iGaming &amp;
           smart-TV. CSPO-certified with a Google UX credential — bridging
