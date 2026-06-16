@@ -1,184 +1,138 @@
-import { ParallaxSection } from "@/components/ui/parallax-section"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { SectionShell, SectionHeading } from "@/components/ui/section-shell"
+import { SpotlightCard } from "@/components/ui/spotlight-card"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, MapPin, Building } from "lucide-react"
+import { Calendar, MapPin, Building2 } from "lucide-react"
 import { motion } from "framer-motion"
 
+const experiences = [
+  {
+    title: "Senior Product Engineer",
+    company: "Cakewalk Information Technologies LLC",
+    location: "Dubai, UAE",
+    period: "Sep 2021 - Present",
+    type: "Full-time",
+    achievements: [
+      "Integrated 5+ payment gateways on a platform doing 10K–100K txns/day with webhooks, retry logic & reconciliation — lifting successful conversions by 82%",
+      "Optimised 4.2M+ record transaction tables with compound indexes, cutting query latency ~80% and eliminating timeout errors",
+      "Built dynamic RabbitMQ queue provisioning with vhost isolation and migrated real-time exports from WebSocket to SSE, hardening broker security",
+      "Developed EMQX MQTT broker integration (MQTTS + WSS) on the Bun runtime with auto-reconnect for resilient real-time delivery",
+      "Architected Express→NestJS (Fastify) migration and a Yarn Workspaces monorepo unifying 5+ codebases — cutting deployment friction 17%",
+      "Set up OpenTelemetry distributed tracing to Grafana Cloud Tempo with <5ms overhead, and a multi-cloud benchmarking service informing a 30% infra cost cut",
+      "Built browser-based VoIP dialer (JWT, E.164) and memoized per-request auth via WeakMap — cutting auth overhead ~97% on hot routes",
+      "Mentored junior engineers, drove coding standards, and refined acceptance criteria with QA for predictable releases",
+    ],
+    technologies: ["TypeScript", "Node.js", "NestJS", "React", "Remix", "Redis", "RabbitMQ", "PostgreSQL", "MQTT", "OpenTelemetry", "Bun"],
+  },
+  {
+    title: "Smart TV Engineer (BBC TAL)",
+    company: "Bufferzero Consultancy",
+    location: "Bengaluru, India",
+    period: "Jan 2021 - Apr 2021",
+    type: "Contract",
+    achievements: [
+      "Developed Sony LIV Smart TV app features using the BBC Television Application Layer (TAL) framework across Samsung Tizen OS and LG WebOS",
+      "Built and tested TV-optimised UI components, navigation flows, and remote-control input handling for consistent cross-device UX",
+      "Operated within a multi-vendor delivery chain (Bufferzero → Logituit → Tata ELXSI → Sony LIV) under enterprise delivery constraints",
+    ],
+    technologies: ["BBC TAL", "Tizen OS", "WebOS", "JavaScript", "Smart TV"],
+  },
+  {
+    title: "Project Manager",
+    company: "ODKART Pvt Ltd",
+    location: "Bhubaneswar, India",
+    period: "Jul 2020 - Sep 2020",
+    type: "Full-time",
+    achievements: [
+      "Directed a remote engineering team to build and ship an HR Windows application in C#, owning the engineering and content roadmap end-to-end",
+      "Launched acquisition campaigns across Google, Facebook & LinkedIn Ads with email and WhatsApp outreach — increasing qualified leads by 33%",
+      "Produced marketing collateral and UI assets in Figma and Canva, saving the team 2 hours/week in design throughput",
+    ],
+    technologies: ["C#", "Google Ads", "Facebook Ads", "LinkedIn Ads", "MailChimp", "Figma", "Canva"],
+  },
+  {
+    title: "Full Stack Engineer (Flutter)",
+    company: "Higgle.io",
+    location: "Bengaluru, India",
+    period: "Mar 2020 - May 2020",
+    type: "Full-time",
+    achievements: [
+      "Designed responsive Flutter UIs for a food-networking app, implementing MobX, Bloc & Redux with GraphQL data flows — reducing render issues by 12%",
+      "Boosted user engagement by 5% through close product collaboration on UI behaviour refinements across multiple device sizes",
+    ],
+    technologies: ["Flutter", "GraphQL", "MobX", "Bloc", "Redux", "Mobile"],
+  },
+]
+
 export function Experience() {
-  const experiences = [
-    {
-      title: "Sr. Product Engineer & Innovation",
-      company: "Cakewalk Information Technologies LLC",
-      location: "Dubai, UAE",
-      period: "Sept 2021 - Present",
-      type: "Full-time",
-      achievements: [
-        "Led B2B iGaming Platform product development with client meetings and feature feasibility analysis",
-        "Built comprehensive admin panel, payment gateway system, and monitoring cloud operations",
-        "Implemented data migration scripts and ticket support system with reports and billing",
-        "Developed UI components using RemixJS and TailwindCSS, later integrated Shadcn UI",
-        "Suggested monorepo architecture using Yarn Workspaces for better code organization",
-        "Implemented Redis caching and JWT-based session management for optimal performance",
-        "Explored Supabase with ORMs, integrated payment gateways and GitHub webhook support",
-        "Created RESTful APIs and monitored cloud operations on Render and Northflank"
-      ],
-      technologies: ["React", "RemixJS", "TailwindCSS", "Shadcn UI", "TypeScript", "Node.js", "Prisma", "PostgreSQL", "Redis", "JWT", "Supabase"]
-    },
-    {
-      title: "Project Manager",
-      company: "ODKART Pvt Ltd",
-      location: "Bhubaneswar, Odisha",
-      period: "Jul 2020 - Sept 2020",
-      type: "Full-time",
-      achievements: [
-        "Managed HR documentation and single-stop HR solutions product development",
-        "Coordinated with remote developers working on C# to create Windows applications",
-        "Collaborated with content writers for blog updates and digital marketing campaigns",
-        "Created target audience mapping for Google Ad-Sense, Facebook Ads, and LinkedIn Ads",
-        "Implemented email marketing via MailChimp and WhatsApp marketing strategies",
-        "Designed advertisements including videos and banner posters using Canva and Figma"
-      ],
-      technologies: ["C#", "Digital Marketing", "Google Ads", "Facebook Ads", "LinkedIn Ads", "MailChimp", "Canva", "Figma"]
-    },
-    {
-      title: "Full Stack Engineer", 
-      company: "Higgle.io",
-      location: "Bengaluru, Karnataka",
-      period: "Mar 2020 - May 2020",
-      type: "Full-time",
-      achievements: [
-        "Developed Fugit - a food connection platform using Flutter with modern design principles",
-        "Created utility to adapt UI screens to different mobile devices based on viewport dimensions",
-        "Explored state management tools like Mobx, Bloc, Provider, and Redux for optimal solutions",
-        "Implemented GraphQL for efficient data fetching across different screens"
-      ],
-      technologies: ["Flutter", "GraphQL", "Mobx", "Bloc", "Provider", "Redux", "Mobile Development"]
-    }
-  ]
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  }
-
-  const cardVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.6 }
-    }
-  }
-
   return (
-    <ParallaxSection id="experience" offset={40}>
-      <motion.div 
-        className="text-center mb-12"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        <h2 className="text-3xl font-bold mb-4">Professional Experience</h2>
-        <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          4+ years of comprehensive experience in full-stack development, from startup environments to enterprise solutions.
-        </p>
-      </motion.div>
+    <SectionShell id="experience">
+      <SectionHeading
+        eyebrow="Experience"
+        title="A track record of shipping"
+        subtitle="6+ years across startups and enterprise — from food-tech and Smart TV in Bengaluru to a B2B iGaming platform in Dubai."
+      />
 
-      <motion.div 
-        className="space-y-8"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        {experiences.map((exp, index) => (
-          <motion.div key={index} variants={cardVariants}>
-            <Card className="shadow-elegant hover:shadow-glow transition-smooth border-l-4 border-l-primary">
-              <CardHeader>
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                  <div>
-                    <CardTitle className="text-xl mb-2">{exp.title}</CardTitle>
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                      <motion.div 
-                        className="flex items-center gap-1"
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        <Building className="w-4 h-4" />
-                        {exp.company}
-                      </motion.div>
-                      <motion.div 
-                        className="flex items-center gap-1"
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        <MapPin className="w-4 h-4" />
-                        {exp.location}
-                      </motion.div>
-                      <motion.div 
-                        className="flex items-center gap-1"
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        <Calendar className="w-4 h-4" />
-                        {exp.period}
-                      </motion.div>
-                    </div>
-                  </div>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Badge variant="outline" className="self-start sm:self-center">
-                      {exp.type}
-                    </Badge>
-                  </motion.div>
+      <div className="relative mx-auto max-w-3xl">
+        {/* Timeline spine — centered on the nodes at x = 1.25rem */}
+        <div className="absolute left-5 top-3 bottom-3 w-px -translate-x-1/2 bg-gradient-to-b from-primary via-violet/60 to-transparent" />
+
+        <div className="space-y-10">
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+              viewport={{ once: true, margin: "-80px" }}
+              className="relative pl-14"
+            >
+              {/* Node — centered on the spine at x = 1.25rem */}
+              <span className="absolute left-5 top-3 z-10 flex h-4 w-4 -translate-x-1/2 items-center justify-center">
+                <span className="absolute h-4 w-4 animate-ping rounded-full bg-primary/40" />
+                <span className="relative h-3 w-3 rounded-full bg-primary ring-4 ring-background" />
+              </span>
+
+              <SpotlightCard className="p-6 text-left">
+                <div className="mb-3 flex flex-wrap items-center gap-2">
+                  <Badge className="border-0 bg-primary/15 text-primary">{exp.type}</Badge>
+                  <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+                    <Calendar className="h-3.5 w-3.5" /> {exp.period}
+                  </span>
                 </div>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 mb-6">
-                  {exp.achievements.map((achievement, i) => (
-                    <motion.li 
-                      key={i} 
-                      className="flex items-start gap-2"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: i * 0.1 }}
-                      viewport={{ once: true }}
-                    >
-                      <motion.div 
-                        className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"
-                        whileHover={{ scale: 1.5 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      />
-                      <span className="text-sm leading-relaxed">{achievement}</span>
-                    </motion.li>
+                <h3 className="text-lg font-semibold">{exp.title}</h3>
+                <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
+                  <span className="inline-flex items-center gap-1">
+                    <Building2 className="h-4 w-4" /> {exp.company}
+                  </span>
+                  <span className="inline-flex items-center gap-1">
+                    <MapPin className="h-4 w-4" /> {exp.location}
+                  </span>
+                </div>
+
+                <ul className="mt-4 space-y-2">
+                  {exp.achievements.map((a, i) => (
+                    <li key={i} className="flex items-start gap-2.5">
+                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gradient-to-r from-primary to-violet" />
+                      <span className="text-sm leading-relaxed text-muted-foreground">{a}</span>
+                    </li>
                   ))}
                 </ul>
-                <div className="flex flex-wrap gap-2">
-                  {exp.technologies.map((tech, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: i * 0.05 }}
-                      whileHover={{ scale: 1.1 }}
-                      viewport={{ once: true }}
+
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {exp.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-md border border-border/60 bg-secondary/50 px-2 py-0.5 text-xs text-muted-foreground"
                     >
-                      <Badge variant="secondary" className="text-xs">
-                        {tech}
-                      </Badge>
-                    </motion.div>
+                      {tech}
+                    </span>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
-      </motion.div>
-    </ParallaxSection>
+              </SpotlightCard>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </SectionShell>
   )
 }
