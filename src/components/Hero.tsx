@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Mail, MapPin, ArrowDown, Github, Linkedin, Sparkles } from "lucide-react"
 import profilePhoto from "@/assets/profile-photo.png"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useEffect, useState } from "react"
 
 const stats = [
   { value: "6+", label: "Years Experience" },
@@ -21,11 +21,22 @@ const item = {
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)")
+    setIsMobile(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mq.addEventListener("change", handler)
+    return () => mq.removeEventListener("change", handler)
+  }, [])
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   })
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "60%"])
+  // Disable Y parallax on mobile — scroll-driven transforms cause jank on low-powered devices
+  const contentY = useTransform(scrollYProgress, [0, 1], isMobile ? ["0%", "0%"] : ["0%", "60%"])
   const contentOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
 
   return (
@@ -36,7 +47,7 @@ export function Hero() {
     >
       {/* Aurora + grid backdrop */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="aurora-bg absolute inset-0" />
+        <div className="aurora-bg absolute inset-0" style={{ willChange: "transform" }} />
         <div className="bg-grid absolute inset-0 opacity-60" />
       </div>
 
@@ -49,7 +60,7 @@ export function Hero() {
       >
         {/* Avatar */}
         <motion.div variants={item} className="mb-8 flex justify-center">
-          <div className="relative animate-float">
+          <div className="relative sm:animate-float">
             <div className="absolute -inset-4 rounded-full bg-gradient-primary opacity-30 blur-2xl" />
             <img
               src={profilePhoto}
