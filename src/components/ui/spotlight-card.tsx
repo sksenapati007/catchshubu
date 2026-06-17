@@ -27,7 +27,7 @@ export function SpotlightCard({ children, className }: SpotlightCardProps) {
       onMouseEnter={() => setOpacity(1)}
       onMouseLeave={() => setOpacity(0)}
       className={cn(
-        "card-glow glass relative overflow-hidden rounded-2xl",
+        "card-glow glass relative overflow-hidden rounded-2xl shadow-[0_8px_30px_-12px_hsl(224_60%_2%/0.7)]",
         className
       )}
     >

@@ -48,7 +48,10 @@ export function Contact() {
                     {item.label}
                   </p>
                   {item.href ? (
-                    <a href={item.href} className="font-medium text-foreground transition-colors hover:text-primary">
+                    <a
+                      href={item.href}
+                      className="rounded-md font-medium text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    >
                       {item.value}
                     </a>
                   ) : (

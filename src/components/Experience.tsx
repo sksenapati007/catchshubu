@@ -122,7 +122,7 @@ export function Experience() {
                   {exp.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="rounded-md border border-border/60 bg-secondary/50 px-2 py-0.5 text-xs text-muted-foreground"
+                      className="rounded-md border border-border bg-secondary/70 px-2 py-0.5 text-xs text-muted-foreground"
                     >
                       {tech}
                     </span>

@@ -45,10 +45,9 @@ export function Hero() {
       ref={ref}
       className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pt-20 sm:pt-0"
     >
-      {/* Aurora + grid backdrop */}
+      {/* Aurora backdrop */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="aurora-bg absolute inset-0" style={{ willChange: "transform" }} />
-        <div className="bg-grid absolute inset-0 opacity-60" />
       </div>
 
       <motion.div

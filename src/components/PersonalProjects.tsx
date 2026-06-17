@@ -90,7 +90,7 @@ export function PersonalProjects() {
                 {p.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-md border border-border/60 bg-secondary/40 px-2 py-0.5 text-xs text-muted-foreground"
+                    className="rounded-md border border-border bg-secondary/70 px-2 py-0.5 text-xs text-muted-foreground"
                   >
                     {tag}
                   </span>
@@ -102,7 +102,7 @@ export function PersonalProjects() {
                   href={p.repo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-primary"
+                  className="inline-flex items-center gap-1.5 rounded-md text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   <Github className="h-4 w-4" /> Code
                 </a>
@@ -111,7 +111,7 @@ export function PersonalProjects() {
                     href={p.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-primary"
+                    className="inline-flex items-center gap-1.5 rounded-md text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
                     <ExternalLink className="h-4 w-4" /> Live Demo
                   </a>
