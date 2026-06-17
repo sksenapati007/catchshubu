@@ -13,10 +13,10 @@
     --background: 224 47% 5%;
     --foreground: 220 20% 96%;
 
-    --card: 225 32% 9%;
+    --card: 224 28% 12%;
     --card-foreground: 220 20% 96%;
 
-    --popover: 225 32% 9%;
+    --popover: 224 28% 12%;
     --popover-foreground: 220 20% 96%;
 
     /* Electric blue primary */
@@ -41,8 +41,8 @@
     --destructive: 0 75% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 225 22% 18%;
-    --input: 225 22% 16%;
+    --border: 220 16% 30%;
+    --input: 220 16% 26%;
     --ring: 217 91% 60%;
 
     --radius: 1rem;
@@ -62,13 +62,13 @@
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     /* shadcn sidebar tokens */
-    --sidebar-background: 225 32% 9%;
+    --sidebar-background: 224 28% 12%;
     --sidebar-foreground: 220 20% 92%;
     --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 224 47% 5%;
     --sidebar-accent: 225 25% 14%;
     --sidebar-accent-foreground: 220 20% 92%;
-    --sidebar-border: 225 22% 18%;
+    --sidebar-border: 220 16% 30%;
     --sidebar-ring: 217 91% 60%;
   }
 }
@@ -149,7 +149,7 @@
     background: hsl(var(--card) / 0.55);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid hsl(var(--border) / 0.7);
+    border: 1px solid hsl(var(--border));
   }
 
   /* Gradient hairline border on hover */
