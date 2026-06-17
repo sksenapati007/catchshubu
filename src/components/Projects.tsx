@@ -79,7 +79,7 @@ export function Projects() {
                     href={p.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-primary"
+                    className="inline-flex items-center gap-1 rounded-md text-xs text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
                     {p.hrefLabel}
                     <ArrowUpRight className="h-3.5 w-3.5" />
@@ -95,7 +95,7 @@ export function Projects() {
                 {p.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-md border border-border/60 bg-secondary/40 px-2 py-0.5 text-xs text-muted-foreground"
+                    className="rounded-md border border-border bg-secondary/70 px-2 py-0.5 text-xs text-muted-foreground"
                   >
                     {tag}
                   </span>

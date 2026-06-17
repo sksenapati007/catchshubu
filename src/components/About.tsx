@@ -113,7 +113,7 @@ export function About() {
                 {group.items.map((item) => (
                   <span
                     key={item}
-                    className="rounded-md border border-border/60 bg-secondary/40 px-2.5 py-1 text-xs text-foreground/90"
+                    className="rounded-md border border-border bg-secondary/70 px-2.5 py-1 text-xs text-foreground/90"
                   >
                     {item}
                   </span>

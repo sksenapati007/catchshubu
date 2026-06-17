@@ -58,7 +58,7 @@ export function Navbar() {
       >
         <button
           onClick={() => go("home")}
-          className="px-3 py-1.5 font-display font-bold text-sm tracking-tight"
+          className="rounded-full px-3 py-1.5 font-display font-bold text-sm tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           aria-label="Go to top"
         >
           <span className="text-gradient">shubu</span>
@@ -71,7 +71,7 @@ export function Navbar() {
               key={id}
               onClick={() => go(id)}
               className={cn(
-                "relative rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors",
+                "relative rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                 active === id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
               )}
             >
