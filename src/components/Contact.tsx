@@ -1,99 +1,119 @@
-import { SectionShell, SectionHeading } from "@/components/ui/section-shell"
-import { SpotlightCard } from "@/components/ui/spotlight-card"
-import { Button } from "@/components/ui/button"
-import { Mail, Phone, MapPin, Linkedin, Github, Globe, Twitter, ArrowUpRight } from "lucide-react"
-import { motion } from "framer-motion"
+import { motion, useReducedMotion } from 'framer-motion'
+import { Mail, Linkedin, Github, FileText } from 'lucide-react'
 
-const contactInfo = [
-  { icon: Mail, label: "Email", value: "catchshubu@gmail.com", href: "mailto:catchshubu@gmail.com" },
-  { icon: Phone, label: "Phone", value: "+971 52 311 6409", href: "tel:+971523116409" },
-  { icon: MapPin, label: "Location", value: "Dubai, United Arab Emirates", href: null },
+const CONTACT_LINKS = [
+  {
+    label: 'Email',
+    handle: 'catchshubu@gmail.com',
+    href: 'mailto:catchshubu@gmail.com',
+    Icon: Mail,
+  },
+  {
+    label: 'LinkedIn',
+    handle: '/in/shubhendukumars',
+    href: 'https://linkedin.com/in/shubhendukumars',
+    Icon: Linkedin,
+  },
+  {
+    label: 'GitHub',
+    handle: '@sksenapati007',
+    href: 'https://github.com/sksenapati007',
+    Icon: Github,
+  },
+  {
+    label: 'Substack',
+    handle: '@catchshubu',
+    href: 'https://catchshubu.substack.com',
+    Icon: FileText,
+  },
 ]
 
-const socialLinks = [
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/shubhendukumars" },
-  { icon: Github, label: "GitHub", href: "https://github.com/sksenapati007" },
-  { icon: Globe, label: "Portfolio", href: "https://catchshubu.dev" },
-  { icon: Twitter, label: "Twitter", href: "https://twitter.com/shubhendukumars" },
-]
+const card = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+}
+const listContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+}
 
 export function Contact() {
+  const reduced = useReducedMotion()
+  const vp = reduced ? undefined : { once: true, margin: '-60px' as const }
+
   return (
-    <SectionShell id="contact">
-      <SectionHeading
-        eyebrow="Contact"
-        title="Let's build something"
-        subtitle="Ready to discuss opportunities and how I can contribute to your team's success."
-      />
+    <section id="contact">
+      <hr className="section-divider" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-        viewport={{ once: true, margin: "-60px" }}
-        className="mx-auto max-w-3xl"
-      >
-        <SpotlightCard className="overflow-hidden p-8 sm:p-10">
-          {/* Glow accent */}
-          <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-gradient-primary opacity-20 blur-3xl" />
+      <div className="px-4 sm:px-6 lg:px-10 xl:px-14 py-[72px]">
+        <div className="mx-auto max-w-[720px] lg:mx-0">
 
-          <div className="relative grid gap-8 sm:grid-cols-2">
-            {contactInfo.map((item) => (
-              <div key={item.label} className="flex items-center gap-4">
-                <div className="rounded-xl bg-primary/10 p-3 ring-1 ring-primary/20">
-                  <item.icon className="h-5 w-5 text-primary" />
+          <motion.div
+            initial={reduced ? false : { opacity: 0 }}
+            whileInView={reduced ? undefined : { opacity: 1 }}
+            viewport={vp}
+            transition={{ duration: 0.5 }}
+            className="mb-6"
+          >
+            <span className="eyebrow">Contact</span>
+          </motion.div>
+
+          <motion.h2
+            initial={reduced ? false : { opacity: 0, y: 12 }}
+            whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+            viewport={vp}
+            transition={{ duration: 0.5 }}
+            className="font-serif font-normal mb-10"
+            style={{ fontSize: '28px', color: 'var(--c-text-1)' }}
+          >
+            Let's build something
+          </motion.h2>
+
+          <motion.div
+            variants={reduced ? undefined : listContainer}
+            initial={reduced ? false : 'hidden'}
+            whileInView={reduced ? undefined : 'visible'}
+            viewport={vp}
+            className="grid grid-cols-1 gap-3 sm:grid-cols-2"
+          >
+            {CONTACT_LINKS.map(({ label, handle, href, Icon }) => (
+              <motion.a
+                key={label}
+                href={href}
+                target={href.startsWith('mailto') ? undefined : '_blank'}
+                rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+                variants={reduced ? undefined : card}
+                className="flex items-center justify-between px-4 py-4 rounded-[4px] group"
+                style={{
+                  border: '1px solid var(--c-border)',
+                  textDecoration: 'none',
+                  transition: 'border-color 200ms ease, background 200ms ease',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.borderColor = 'var(--c-muted)'
+                  e.currentTarget.style.background = 'var(--c-surface)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.borderColor = 'var(--c-border)'
+                  e.currentTarget.style.background = 'transparent'
+                }}
+              >
+                <div className="flex items-center gap-3">
+                  <Icon size={16} style={{ color: 'var(--c-text-3)', flexShrink: 0 }} strokeWidth={1.5} />
+                  <span className="text-sm" style={{ color: 'var(--c-text-1)' }}>{label}</span>
                 </div>
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    {item.label}
-                  </p>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      className="rounded-md font-medium text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                    >
-                      {item.value}
-                    </a>
-                  ) : (
-                    <p className="font-medium text-foreground">{item.value}</p>
-                  )}
-                </div>
-              </div>
+                <span
+                  className="font-mono text-[11px] ml-3 truncate"
+                  style={{ color: 'var(--c-text-3)' }}
+                >
+                  {handle}
+                </span>
+              </motion.a>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="relative mt-8 flex flex-col items-center gap-6 border-t border-border/60 pt-8">
-            <Button
-              asChild
-              size="lg"
-              className="group bg-gradient-primary text-primary-foreground transition-smooth hover:shadow-glow"
-            >
-              <a href="mailto:catchshubu@gmail.com">
-                <Mail className="mr-2 h-5 w-5" />
-                Send a Message
-                <ArrowUpRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-            </Button>
-
-            <div className="flex gap-2">
-              {socialLinks.map((link) => (
-                <motion.div key={link.label} whileHover={{ y: -3 }} whileTap={{ scale: 0.95 }}>
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="icon"
-                    className="rounded-full border-border/60 transition-smooth hover:border-primary/50 hover:text-primary"
-                  >
-                    <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
-                      <link.icon className="h-5 w-5" />
-                    </a>
-                  </Button>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </SpotlightCard>
-      </motion.div>
-    </SectionShell>
+        </div>
+      </div>
+    </section>
   )
 }

@@ -1,126 +1,209 @@
-import { SectionShell, SectionHeading } from "@/components/ui/section-shell"
-import { SpotlightCard } from "@/components/ui/spotlight-card"
-import { Github, ExternalLink } from "lucide-react"
-import { motion } from "framer-motion"
+import React from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
+import { Github, ExternalLink } from 'lucide-react'
+import { Tag } from '@/components/ui/Tag'
+import { SpotlightCard } from '@/components/ui/SpotlightCard'
 
-const projects = [
+const MotionSpotlightCard = motion(SpotlightCard)
+
+interface PersonalProject {
+  name: string
+  description: string
+  tags: string[]
+  github: string
+  demo?: string
+}
+
+const PERSONAL_PROJECTS: PersonalProject[] = [
   {
-    name: "NutrimentPWA",
-    description: "Personal diet & nutrition tracker built as an installable Progressive Web App.",
-    repo: "https://github.com/sksenapati007/NutrimentPWA",
-    live: "https://nutrimentpwa.onrender.com",
-    tags: ["PWA", "Diet Tracker"],
+    name: 'NutrimentPWA',
+    description: 'Personal diet & nutrition tracker built as an installable Progressive Web App.',
+    tags: ['PWA', 'Diet Tracker'],
+    github: 'https://github.com/sksenapati007/NutrimentPWA',
+    demo: 'https://nutrimentpwa.onrender.com',
   },
   {
-    name: "FarmPlanner",
-    description: "Farm planning and management web app for organising layouts and schedules.",
-    repo: "https://github.com/sksenapati007/FarmPlanner-v1",
-    live: "https://farmplanner-v1.onrender.com",
-    tags: ["Web App", "Planner"],
+    name: 'FarmPlanner',
+    description: 'Farm planning and management web app for organising layouts and schedules.',
+    tags: ['Web App', 'Planner'],
+    github: 'https://github.com/sksenapati007/FarmPlanner-v1',
+    demo: 'https://farmplanner-v1.onrender.com',
   },
   {
-    name: "PawPal",
-    description: "MVP built during Certified Scrum Product Owner (CSPO) training.",
-    repo: "https://github.com/sksenapati007/PawPal",
-    live: "https://sksenapati007.github.io/PawPal",
-    tags: ["MVP", "CSPO"],
+    name: 'PawPal',
+    description: 'MVP built during Certified Scrum Product Owner (CSPO) training.',
+    tags: ['MVP', 'CSPO'],
+    github: 'https://github.com/sksenapati007/PawPal',
+    demo: 'https://sksenapati007.github.io/PawPal',
   },
   {
-    name: "Expense Tracker",
-    description: "Flutter-based expense tracking app for logging and categorising spend. (Unpublished)",
-    repo: "https://github.com/sksenapati007/ExpenseTrackerApp",
-    live: null,
-    tags: ["Flutter", "Mobile"],
+    name: 'Expense Tracker',
+    description: 'Flutter-based expense tracking app for logging and categorising spend. (Unpublished)',
+    tags: ['Flutter', 'Mobile'],
+    github: 'https://github.com/sksenapati007/ExpenseTrackerApp',
   },
   {
-    name: "Simple TODO App",
-    description: "Lightweight to-do app — pure client-side, no databases involved.",
-    repo: "https://github.com/sksenapati007/Simple-TODO-App",
-    live: "https://todo-list-shubu.web.app",
-    tags: ["Todo", "Client-side"],
+    name: 'Simple TODO App',
+    description: 'Lightweight to-do app — pure client-side, no databases involved.',
+    tags: ['Todo', 'Client-side'],
+    github: 'https://github.com/sksenapati007/Simple-TODO-App',
+    demo: 'https://todo-list-shubu.web.app',
   },
   {
-    name: "weather-cli",
-    description: "Weather service that returns live conditions by city via a simple API endpoint.",
-    repo: "https://github.com/sksenapati007/weather-cli",
-    live: "https://weather-cli-mrlm.onrender.com/weather?city=Dubai",
-    tags: ["CLI", "API"],
+    name: 'weather-cli',
+    description: 'Weather service that returns live conditions by city via a simple API endpoint.',
+    tags: ['CLI', 'API'],
+    github: 'https://github.com/sksenapati007/weather-cli',
+    demo: 'https://weather-cli-mrlm.onrender.com/weather?city=Dubai',
   },
   {
-    name: "Employee Management",
-    description: "C++ console application for employee records — an early high-school project.",
-    repo: "https://github.com/sksenapati007/Employee-Mgmt-C-plus-plus",
-    live: null,
-    tags: ["C++", "Console"],
+    name: 'Employee Management',
+    description: 'C++ console application for employee records — an early high-school project.',
+    tags: ['C++', 'Console'],
+    github: 'https://github.com/sksenapati007/Employee-Mgmt-C-plus-plus',
   },
 ]
 
-const container = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
-}
 const card = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45 } },
+}
+const grid = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.07 } },
 }
 
 export function PersonalProjects() {
+  const reduced = useReducedMotion()
+  const vp = reduced ? undefined : { once: true, margin: '-60px' as const }
+
   return (
-    <SectionShell id="personal">
-      <SectionHeading
-        eyebrow="Personal Projects"
-        title="Built for the love of it"
-        subtitle="Side projects and experiments — from PWAs and Flutter apps to CLIs and a nostalgic C++ console app."
-      />
+    <section id="personal-projects">
+      <hr className="section-divider" />
 
-      <motion.div
-        className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-60px" }}
-      >
-        {projects.map((p) => (
-          <motion.div key={p.name} variants={card}>
-            <SpotlightCard className="flex h-full flex-col p-6">
-              <h3 className="text-lg font-semibold">{p.name}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
+      <div className="px-4 sm:px-6 lg:px-10 xl:px-14 py-[72px]">
 
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {p.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-md border border-border bg-secondary/70 px-2 py-0.5 text-xs text-muted-foreground"
-                  >
-                    {tag}
-                  </span>
-                ))}
+        <motion.div
+          initial={reduced ? false : { opacity: 0 }}
+          whileInView={reduced ? undefined : { opacity: 1 }}
+          viewport={vp}
+          transition={{ duration: 0.5 }}
+          className="mb-2"
+        >
+          <span className="eyebrow">Personal Projects</span>
+        </motion.div>
+
+        <motion.h2
+          initial={reduced ? false : { opacity: 0, y: 12 }}
+          whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+          viewport={vp}
+          transition={{ duration: 0.5 }}
+          className="font-serif font-normal mb-3"
+          style={{ fontSize: 'clamp(26px, 3.5vw, 40px)', color: 'var(--c-text-1)' }}
+        >
+          Built for the love of it
+        </motion.h2>
+
+        <motion.p
+          initial={reduced ? false : { opacity: 0, y: 8 }}
+          whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+          viewport={vp}
+          transition={{ duration: 0.5, delay: 0.05 }}
+          className="mb-12 text-sm sm:text-base leading-relaxed max-w-[600px]"
+          style={{ color: 'var(--c-text-2)' }}
+        >
+          Side projects and experiments — from PWAs and Flutter apps to CLIs and a nostalgic C++ console app.
+        </motion.p>
+
+        <motion.div
+          variants={reduced ? undefined : grid}
+          initial={reduced ? false : 'hidden'}
+          whileInView={reduced ? undefined : 'visible'}
+          viewport={vp}
+          className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {PERSONAL_PROJECTS.map(p => (
+            <MotionSpotlightCard
+              key={p.name}
+              variants={reduced ? undefined : card}
+              style={{
+                border: '1px solid var(--c-border)',
+                borderRadius: '6px',
+                padding: '20px',
+                background: 'var(--c-surface)',
+                display: 'flex',
+                flexDirection: 'column',
+                transition: 'border-color 200ms ease',
+              }}
+              onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => (e.currentTarget.style.borderColor = 'var(--c-muted)')}
+              onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => (e.currentTarget.style.borderColor = 'var(--c-border)')}
+            >
+              <h3
+                className="font-serif leading-snug mb-2"
+                style={{ fontSize: '18px', color: 'var(--c-text-1)' }}
+              >
+                {p.name}
+              </h3>
+
+              <p
+                className="text-[13px] leading-relaxed flex-1 mb-4"
+                style={{ color: 'var(--c-text-2)' }}
+              >
+                {p.description}
+              </p>
+
+              <div className="flex flex-wrap gap-1.5 mb-4">
+                {p.tags.map(t => <Tag key={t}>{t}</Tag>)}
               </div>
 
-              <div className="mt-5 flex items-center gap-4 border-t border-border/60 pt-4 text-sm">
+              <div
+                className="flex items-center gap-5 pt-3"
+                style={{ borderTop: '1px solid var(--c-border)' }}
+              >
                 <a
-                  href={p.repo}
+                  href={p.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-md text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  className="flex items-center gap-1.5"
+                  style={{
+                    fontFamily: '"JetBrains Mono", monospace',
+                    fontSize: '11px',
+                    color: 'var(--c-text-3)',
+                    textDecoration: 'none',
+                    transition: 'color 150ms ease',
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--c-text-1)')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'var(--c-text-3)')}
                 >
-                  <Github className="h-4 w-4" /> Code
+                  <Github size={13} strokeWidth={1.5} />
+                  Code
                 </a>
-                {p.live && (
+                {p.demo && (
                   <a
-                    href={p.live}
+                    href={p.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-md text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    className="flex items-center gap-1.5"
+                    style={{
+                      fontFamily: '"JetBrains Mono", monospace',
+                      fontSize: '11px',
+                      color: 'var(--c-text-3)',
+                      textDecoration: 'none',
+                      transition: 'color 150ms ease',
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--c-text-1)')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--c-text-3)')}
                   >
-                    <ExternalLink className="h-4 w-4" /> Live Demo
+                    <ExternalLink size={13} strokeWidth={1.5} />
+                    Live Demo
                   </a>
                 )}
               </div>
-            </SpotlightCard>
-          </motion.div>
-        ))}
-      </motion.div>
-    </SectionShell>
+            </MotionSpotlightCard>
+          ))}
+        </motion.div>
+
+      </div>
+    </section>
   )
 }

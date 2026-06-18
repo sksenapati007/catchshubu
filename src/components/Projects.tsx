@@ -1,110 +1,84 @@
-import { SectionShell, SectionHeading } from "@/components/ui/section-shell"
-import { SpotlightCard } from "@/components/ui/spotlight-card"
-import { ArrowUpRight } from "lucide-react"
-import { motion } from "framer-motion"
-
-const projects = [
-  {
-    name: "B2B iGaming Platform",
-    client: "Insidebeehive · Cakewalk",
-    status: "Live",
-    href: "https://betstudio.io",
-    hrefLabel: "betstudio.io",
-    description:
-      "Enterprise iGaming platform with admin tooling, payment processing and reporting dashboards. Led the Yarn Workspaces monorepo migration unifying 5+ codebases (−17% deployment friction); centralised logging and flame-graph profiling cut crash incidents by 8%.",
-    tags: ["Monorepo", "Payments", "Reporting", "Observability"],
-  },
-  {
-    name: "Account Aggregator",
-    client: "Cakewalk",
-    status: "Unreleased",
-    href: null,
-    hrefLabel: null,
-    description:
-      "Mobile-first account aggregator UI built with Next.js + Tailwind CSS — achieving an 80% improvement in mobile page performance. Interactive rotating card components lifted key engagement metrics by 5%.",
-    tags: ["Next.js", "Tailwind CSS", "Mobile-first"],
-  },
-  {
-    name: "DocLabel — Doctor Evidence",
-    client: "Cakewalk",
-    status: "Live",
-    href: "https://drevidence.com",
-    hrefLabel: "drevidence.com",
-    description:
-      "Healthcare UI component library and in-house headless UI tooling. Resolved priority defects (−9% UI bugs), implemented Angular CDK drag-and-drop, and automated environment setup — saving 1 hour per sprint.",
-    tags: ["Angular", "Component Library", "Healthcare"],
-  },
-]
-
-const container = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
-}
-const card = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
-}
+import { useRef, useState, useCallback } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
+import { ProjectCard } from '@/components/ui/ProjectCard'
+import { PROJECTS } from '@/data/projects'
 
 export function Projects() {
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [isDragging, setIsDragging] = useState(false)
+  const [startX, setStartX] = useState(0)
+  const [scrollLeft, setScrollLeft] = useState(0)
+  const reduced = useReducedMotion()
+
+  const onMouseDown = useCallback((e: React.MouseEvent) => {
+    setIsDragging(true)
+    setStartX(e.pageX - (scrollRef.current?.offsetLeft ?? 0))
+    setScrollLeft(scrollRef.current?.scrollLeft ?? 0)
+  }, [])
+
+  const onMouseLeave = useCallback(() => setIsDragging(false), [])
+  const onMouseUp = useCallback(() => setIsDragging(false), [])
+
+  const onMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!isDragging || !scrollRef.current) return
+    e.preventDefault()
+    const x = e.pageX - (scrollRef.current.offsetLeft ?? 0)
+    const walk = (x - startX) * 1.2
+    scrollRef.current.scrollLeft = scrollLeft - walk
+  }, [isDragging, startX, scrollLeft])
+
+  const vp = reduced ? undefined : { once: true, margin: '-60px' as const }
+
   return (
-    <SectionShell id="projects">
-      <SectionHeading
-        eyebrow="Work"
-        title="Things I've shipped"
-        subtitle="Selected professional work spanning iGaming, fintech and healthcare — from platform architecture to polished product UI."
-      />
+    <section id="projects">
+      <hr className="section-divider" />
 
-      <motion.div
-        className="grid grid-cols-1 gap-5 md:grid-cols-3"
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-60px" }}
-      >
-        {projects.map((p) => (
-          <motion.div key={p.name} variants={card}>
-            <SpotlightCard className="flex h-full flex-col p-6">
-              <div className="mb-3 flex items-center justify-between gap-2">
-                <span
-                  className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                    p.status === "Live"
-                      ? "bg-accent/15 text-accent"
-                      : "bg-secondary text-muted-foreground"
-                  }`}
-                >
-                  {p.status}
-                </span>
-                {p.href && (
-                  <a
-                    href={p.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 rounded-md text-xs text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                  >
-                    {p.hrefLabel}
-                    <ArrowUpRight className="h-3.5 w-3.5" />
-                  </a>
-                )}
-              </div>
-
-              <h3 className="text-lg font-semibold">{p.name}</h3>
-              <p className="mb-3 text-xs uppercase tracking-wider text-muted-foreground">{p.client}</p>
-              <p className="flex-1 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
-
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {p.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-md border border-border bg-secondary/70 px-2 py-0.5 text-xs text-muted-foreground"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </SpotlightCard>
+      <div className="py-[72px]">
+        {/* Header */}
+        <div className="px-4 sm:px-6 lg:px-10 xl:px-14 mb-8">
+          <motion.div
+            initial={reduced ? false : { opacity: 0 }}
+            whileInView={reduced ? undefined : { opacity: 1 }}
+            viewport={vp}
+            transition={{ duration: 0.5 }}
+            className="mb-2"
+          >
+            <span className="eyebrow">Work</span>
           </motion.div>
-        ))}
-      </motion.div>
-    </SectionShell>
+
+          <div className="flex items-end justify-between">
+            <motion.h2
+              initial={reduced ? false : { opacity: 0, y: 12 }}
+              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+              viewport={vp}
+              transition={{ duration: 0.5 }}
+              className="font-serif font-normal"
+              style={{ fontSize: '28px', color: 'var(--c-text-1)' }}
+            >
+              Things I've shipped
+            </motion.h2>
+            <span className="eyebrow hidden sm:block">drag to explore →</span>
+          </div>
+        </div>
+
+        {/* Horizontal scroll — full bleed */}
+        <div
+          ref={scrollRef}
+          role="list"
+          aria-label="Projects"
+          className="no-scrollbar flex gap-4 sm:gap-5 overflow-x-auto px-4 sm:px-6 lg:px-10 xl:px-14 cursor-grab active:cursor-grabbing select-none"
+          style={{ paddingBottom: '4px', WebkitOverflowScrolling: 'touch' }}
+          onMouseDown={onMouseDown}
+          onMouseLeave={onMouseLeave}
+          onMouseUp={onMouseUp}
+          onMouseMove={onMouseMove}
+        >
+          {PROJECTS.map(project => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+          <div className="flex-shrink-0 w-4" aria-hidden="true" />
+        </div>
+      </div>
+    </section>
   )
 }

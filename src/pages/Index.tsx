@@ -1,36 +1,43 @@
-import { Navbar } from "@/components/Navbar"
-import { ScrollProgress } from "@/components/ScrollProgress"
+import { Sidebar } from "@/components/layout/Sidebar"
 import { Hero } from "@/components/Hero"
 import { About } from "@/components/About"
-import { Experience } from "@/components/Experience"
 import { Projects } from "@/components/Projects"
 import { PersonalProjects } from "@/components/PersonalProjects"
 import { Goals } from "@/components/Goals"
 import { Contact } from "@/components/Contact"
 import { Footer } from "@/components/Footer"
+import { CustomCursor } from "@/components/ui/CustomCursor"
+import { PageSpotlight } from "@/components/ui/PageSpotlight"
 
 const Index = () => {
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
+    <div className="relative min-h-screen">
+      <div className="grain" aria-hidden="true" />
+      <PageSpotlight />
+      <CustomCursor />
+      {/* Skip to content */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:font-medium focus:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-[4px] focus:px-4 focus:py-2 focus:text-sm focus:font-mono focus:outline-none"
+        style={{ background: 'var(--c-accent)', color: 'var(--c-base)' }}
       >
         Skip to content
       </a>
-      <div className="grain" />
-      <ScrollProgress />
-      <Navbar />
-      <main id="main-content">
+
+      <Sidebar />
+
+      <main id="main-content" className="lg:pl-[52px] pb-14 lg:pb-0">
         <Hero />
         <About />
-        <Experience />
         <Projects />
         <PersonalProjects />
         <Goals />
         <Contact />
       </main>
-      <Footer />
+
+      <div className="lg:pl-[52px]">
+        <Footer />
+      </div>
     </div>
   )
 }
