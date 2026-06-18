@@ -30,7 +30,7 @@ export function Projects() {
   const vp = reduced ? undefined : { once: true, margin: '-60px' as const }
 
   return (
-    <section id="projects">
+    <section id="projects" aria-labelledby="projects-heading">
       <hr className="section-divider" />
 
       <div className="py-[72px]">
@@ -48,6 +48,7 @@ export function Projects() {
 
           <div className="flex items-end justify-between">
             <motion.h2
+              id="projects-heading"
               initial={reduced ? false : { opacity: 0, y: 12 }}
               whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
               viewport={vp}
@@ -66,12 +67,18 @@ export function Projects() {
           ref={scrollRef}
           role="list"
           aria-label="Projects"
+          tabIndex={0}
           className="no-scrollbar flex gap-4 sm:gap-5 overflow-x-auto px-4 sm:px-6 lg:px-10 xl:px-14 cursor-grab active:cursor-grabbing select-none"
           style={{ paddingBottom: '4px', WebkitOverflowScrolling: 'touch' }}
           onMouseDown={onMouseDown}
           onMouseLeave={onMouseLeave}
           onMouseUp={onMouseUp}
           onMouseMove={onMouseMove}
+          onKeyDown={e => {
+            if (!scrollRef.current) return
+            if (e.key === 'ArrowLeft')  { e.preventDefault(); scrollRef.current.scrollLeft -= 320 }
+            if (e.key === 'ArrowRight') { e.preventDefault(); scrollRef.current.scrollLeft += 320 }
+          }}
         >
           {PROJECTS.map(project => (
             <ProjectCard key={project.id} project={project} />

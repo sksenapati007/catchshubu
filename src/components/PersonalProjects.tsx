@@ -78,7 +78,7 @@ export function PersonalProjects() {
   const vp = reduced ? undefined : { once: true, margin: '-60px' as const }
 
   return (
-    <section id="personal-projects">
+    <section id="personal-projects" aria-labelledby="personal-projects-heading">
       <hr className="section-divider" />
 
       <div className="px-4 sm:px-6 lg:px-10 xl:px-14 py-[72px]">
@@ -94,6 +94,7 @@ export function PersonalProjects() {
         </motion.div>
 
         <motion.h2
+          id="personal-projects-heading"
           initial={reduced ? false : { opacity: 0, y: 12 }}
           whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
           viewport={vp}
@@ -164,6 +165,7 @@ export function PersonalProjects() {
                   href={p.github}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`${p.name} source code on GitHub`}
                   className="flex items-center gap-1.5"
                   style={{
                     fontFamily: '"JetBrains Mono", monospace',
@@ -183,6 +185,7 @@ export function PersonalProjects() {
                     href={p.demo}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`${p.name} live demo`}
                     className="flex items-center gap-1.5"
                     style={{
                       fontFamily: '"JetBrains Mono", monospace',
