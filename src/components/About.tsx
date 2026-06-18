@@ -86,7 +86,7 @@ export function About() {
   const vp = reduced ? undefined : { once: true, margin: '-60px' as const }
 
   return (
-    <section id="about">
+    <section id="about" aria-labelledby="about-heading">
       <hr className="section-divider" />
 
       <div className="px-4 sm:px-6 lg:px-10 xl:px-14 py-[72px]">
@@ -111,6 +111,7 @@ export function About() {
               variants={fadeUp}
             >
               <h2
+                id="about-heading"
                 className="font-serif font-normal mb-6"
                 style={{ fontSize: '28px', color: 'var(--c-text-1)' }}
               >
@@ -140,11 +141,13 @@ export function About() {
               whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
               viewport={vp}
               transition={{ duration: 0.5, delay: 0.15 }}
+              role="list"
               className="flex flex-row md:flex-col gap-3 flex-wrap"
             >
               {ROLE_BADGES.map(label => (
                 <div
                   key={label}
+                  role="listitem"
                   className="inline-flex items-center px-3 py-2 rounded-[4px]"
                   style={{
                     border: '1px solid var(--c-border)',

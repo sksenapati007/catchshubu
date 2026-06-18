@@ -6,8 +6,8 @@ const NAV_ITEMS = [
   { id: 'home',             icon: Home,       label: 'Home',             href: '#home',             mobile: true  },
   { id: 'about',            icon: User,       label: 'About',            href: '#about',            mobile: true  },
   { id: 'projects',         icon: LayoutGrid, label: 'Projects',         href: '#projects',         mobile: true  },
-  { id: 'personal-projects',icon: Code2,      label: 'Personal',         href: '#personal-projects',mobile: false },
-  { id: 'goals',            icon: Target,     label: 'Goals',            href: '#goals',            mobile: false },
+  { id: 'personal-projects',icon: Code2,      label: 'Personal',         href: '#personal-projects',mobile: true  },
+  { id: 'goals',            icon: Target,     label: 'Goals',            href: '#goals',            mobile: true  },
   { id: 'contact',          icon: Mail,       label: 'Contact',          href: '#contact',          mobile: true  },
 ]
 
@@ -55,9 +55,10 @@ export function Sidebar() {
     SECTION_IDS.forEach(id => {
       const el = document.getElementById(id)
       if (!el) return
+      // Fire when the section's top edge crosses the middle of the viewport
       const obs = new IntersectionObserver(
         ([entry]) => { if (entry.isIntersecting) setActive(id) },
-        { threshold: 0.4 }
+        { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
       )
       obs.observe(el)
       observers.push(obs)
@@ -69,7 +70,7 @@ export function Sidebar() {
     <>
       {/* Desktop sidebar */}
       <nav
-        aria-label="Page navigation"
+        aria-label="Main navigation"
         className="hidden lg:flex fixed left-0 top-0 z-50 h-screen w-[52px] flex-col items-center py-6"
         style={{ background: 'var(--c-base)', borderRight: '1px solid var(--c-border)', transition: 'background 250ms ease, border-color 250ms ease' }}
       >
@@ -79,6 +80,7 @@ export function Sidebar() {
 
         {/* Theme toggle */}
         <button
+          type="button"
           onClick={toggle}
           aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           data-magnetic
@@ -108,10 +110,10 @@ export function Sidebar() {
         <span aria-hidden="true" className="h-1 w-1 rounded-full" style={{ background: 'var(--c-border)' }} />
       </nav>
 
-      {/* Mobile bottom nav */}
+      {/* Mobile bottom nav — icon-only, all 6 sections + theme toggle */}
       <nav
-        aria-label="Page navigation"
-        className="flex lg:hidden fixed bottom-0 left-0 right-0 z-50 h-14 items-center justify-around"
+        aria-label="Mobile navigation"
+        className="flex lg:hidden fixed bottom-0 left-0 right-0 z-50 h-12 items-center justify-around"
         style={{ borderTop: '1px solid var(--c-border)', background: 'var(--c-base)', backdropFilter: 'blur(12px)' }}
       >
         {NAV_ITEMS.filter(i => i.mobile).map(({ id, icon: Icon, label, href }) => {
@@ -121,27 +123,22 @@ export function Sidebar() {
               key={id}
               href={href}
               aria-label={label}
-              className="flex h-full flex-1 flex-col items-center justify-center gap-0.5"
+              className="flex h-full flex-1 items-center justify-center"
               style={{ color: isActive ? 'var(--c-accent)' : 'var(--c-text-3)', transition: 'color 150ms ease' }}
             >
-              <Icon size={18} strokeWidth={1.5} />
-              <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'inherit' }}>
-                {label}
-              </span>
+              <Icon size={16} strokeWidth={isActive ? 2 : 1.5} />
             </a>
           )
         })}
-        {/* Theme toggle on mobile */}
+        {/* Theme toggle */}
         <button
+          type="button"
           onClick={toggle}
           aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-          className="flex h-full flex-1 flex-col items-center justify-center gap-0.5"
+          className="flex h-full flex-1 items-center justify-center"
           style={{ color: 'var(--c-text-3)', background: 'none', border: 'none', cursor: 'pointer', transition: 'color 150ms ease' }}
         >
-          {theme === 'dark' ? <Sun size={18} strokeWidth={1.5} /> : <Moon size={18} strokeWidth={1.5} />}
-          <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'inherit' }}>
-            {theme === 'dark' ? 'Light' : 'Dark'}
-          </span>
+          {theme === 'dark' ? <Sun size={16} strokeWidth={1.5} /> : <Moon size={16} strokeWidth={1.5} />}
         </button>
       </nav>
     </>
