@@ -5,13 +5,36 @@ const RADIUS_MAGNETIC = 50   // px diameter — same size when snapped
 const LERP_DEFAULT    = 0.12 // smoothing at rest
 const LERP_MAGNETIC   = 0.22 // faster catch-up when snapped
 
-// Only elements explicitly opted-in with data-magnetic get the snap effect
 const MAGNETIC_SELECTOR = '[data-magnetic]'
+
+// Tags eligible for the semibold hover effect — text-bearing semantics only
+const SEMIBOLD_TAGS = new Set(['H1', 'H2', 'H3', 'H4', 'P', 'A', 'BUTTON', 'SPAN', 'LI'])
+
+function findSemiboldTarget(el: Element | null): HTMLElement | null {
+  let curr = el
+  for (let i = 0; i < 4 && curr; i++) {
+    if (
+      curr instanceof HTMLElement &&
+      SEMIBOLD_TAGS.has(curr.tagName) &&
+      curr.getAttribute('aria-hidden') !== 'true' &&
+      curr.textContent?.trim()
+    ) return curr
+    curr = curr.parentElement
+  }
+  return null
+}
+
+function applySemibold(el: HTMLElement) {
+  el.classList.add('cursor-semibold')
+}
+
+function removeSemibold(el: HTMLElement) {
+  el.classList.remove('cursor-semibold')
+}
 
 export function CustomCursor() {
   const ringRef   = useRef<HTMLDivElement>(null)
   const dotRef    = useRef<HTMLDivElement>(null)
-  // mutable refs so the RAF loop stays up-to-date without re-subscribing
   const state = useRef({
     mouseX: -999, mouseY: -999,
     curX:   -999, curY:   -999,
@@ -19,6 +42,7 @@ export function CustomCursor() {
     radius: RADIUS_DEFAULT,
     lerp:   LERP_DEFAULT,
   })
+  const prevSemiboldEl = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return
@@ -34,13 +58,12 @@ export function CustomCursor() {
       s.mouseX = e.clientX
       s.mouseY = e.clientY
 
-      // Find nearest magnetic target under cursor
       const els = document.elementsFromPoint(e.clientX, e.clientY)
-      const target = els.find(el => el.matches(MAGNETIC_SELECTOR)) as HTMLElement | undefined
 
+      // Magnetic snap
+      const target = els.find(el => el.matches(MAGNETIC_SELECTOR)) as HTMLElement | undefined
       if (target) {
         const rect = target.getBoundingClientRect()
-        // Snap to center of the element
         s.targetX = rect.left + rect.width  / 2
         s.targetY = rect.top  + rect.height / 2
         s.radius  = RADIUS_MAGNETIC
@@ -51,9 +74,27 @@ export function CustomCursor() {
         s.radius  = RADIUS_DEFAULT
         s.lerp    = LERP_DEFAULT
       }
+
+      // Semibold — find text element directly under cursor
+      const topEl = document.elementFromPoint(e.clientX, e.clientY)
+      const semiboldEl = findSemiboldTarget(topEl)
+
+      if (semiboldEl !== prevSemiboldEl.current) {
+        if (prevSemiboldEl.current) removeSemibold(prevSemiboldEl.current)
+        if (semiboldEl) applySemibold(semiboldEl)
+        prevSemiboldEl.current = semiboldEl
+      }
+    }
+
+    const onLeave = () => {
+      if (prevSemiboldEl.current) {
+        removeSemibold(prevSemiboldEl.current)
+        prevSemiboldEl.current = null
+      }
     }
 
     document.addEventListener('mousemove', onMove)
+    document.addEventListener('mouseleave', onLeave)
 
     let raf: number
     const tick = () => {
@@ -74,14 +115,16 @@ export function CustomCursor() {
 
     return () => {
       document.removeEventListener('mousemove', onMove)
+      document.removeEventListener('mouseleave', onLeave)
       cancelAnimationFrame(raf)
       document.documentElement.classList.remove('cursor-none')
+      if (prevSemiboldEl.current) removeSemibold(prevSemiboldEl.current)
     }
   }, [])
 
   return (
     <>
-      {/* Inverting magnifier — white + mix-blend-mode:difference = inversion */}
+      {/* Inverting circle — white + mix-blend-mode:difference = inversion */}
       <div
         ref={ringRef}
         aria-hidden="true"
