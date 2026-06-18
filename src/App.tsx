@@ -5,11 +5,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import { ThemeProvider } from "@/context/ThemeContext";
+import { ThemeProvider } from "@/context/ThemeContext"
+import { MusicProvider } from "@/context/MusicContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
+  <MusicProvider>
   <ThemeProvider>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -25,6 +27,7 @@ const App = () => (
       </TooltipProvider>
     </QueryClientProvider>
   </ThemeProvider>
+  </MusicProvider>
 );
 
 export default App;

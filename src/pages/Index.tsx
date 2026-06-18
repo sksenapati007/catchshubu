@@ -8,6 +8,9 @@ import { Contact } from "@/components/Contact"
 import { Footer } from "@/components/Footer"
 import { CustomCursor } from "@/components/ui/CustomCursor"
 import { PageSpotlight } from "@/components/ui/PageSpotlight"
+import { MusicPrompt } from "@/components/ui/MusicPrompt"
+import { MusicPlayer } from "@/components/ui/MusicPlayer"
+import { VerticalStrip } from "@/components/ui/VerticalStrip"
 
 const Index = () => {
   return (
@@ -15,6 +18,9 @@ const Index = () => {
       <div className="grain" aria-hidden="true" />
       <PageSpotlight />
       <CustomCursor />
+      <MusicPrompt />
+      <MusicPlayer />
+      <VerticalStrip />
       {/* Skip to content */}
       <a
         href="#main-content"

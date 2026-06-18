@@ -1,3 +1,10 @@
+export interface ProjectSlide {
+  // TODO: add `src: string` and replace `color` once you have real screenshots
+  color: string
+  caption?: string
+  projectName?: string
+}
+
 export interface Project {
   id: string
   year: string
@@ -9,11 +16,17 @@ export interface Project {
   metric: { label: string; value: string }
   role: string
   status?: 'live' | 'unpublished'
+  slides?: ProjectSlide[]   // TODO: fill with real screenshots
 }
 
 const PROJECTS_UNSORTED: Project[] = [
   {
     id: 'doctor-evidence',
+    slides: [
+      { color: '#0D1A0D', projectName: 'Doctor Evidence', caption: 'Clinical data intelligence platform' },
+      { color: '#111D11', projectName: 'Doctor Evidence' },
+      { color: '#0A160A', projectName: 'Doctor Evidence' },
+    ],
     year: '2019 — 2020',
     yearStart: 2019,
     name: 'Doctor Evidence — Health Analytics',

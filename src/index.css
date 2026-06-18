@@ -188,6 +188,16 @@
     cursor: none !important;
   }
 
+  /* Music player — bottom offset clears mobile nav */
+  .music-player-bar {
+    bottom: 72px !important; /* above mobile bottom nav */
+  }
+  @media (min-width: 1024px) {
+    .music-player-bar {
+      bottom: 20px !important;
+    }
+  }
+
   /* Portrait grayscale in dark mode */
   .portrait-img {
     filter: grayscale(0.45);
