@@ -8,7 +8,6 @@ import { Contact } from "@/components/Contact"
 import { Footer } from "@/components/Footer"
 import { CustomCursor } from "@/components/ui/CustomCursor"
 import { PageSpotlight } from "@/components/ui/PageSpotlight"
-import { MusicPrompt } from "@/components/ui/MusicPrompt"
 import { MusicPlayer } from "@/components/ui/MusicPlayer"
 
 const Index = () => {
@@ -17,12 +16,11 @@ const Index = () => {
       <div className="grain" aria-hidden="true" />
       <PageSpotlight />
       <CustomCursor />
-      <MusicPrompt />
       <MusicPlayer />
       {/* Skip to content */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-[4px] focus:px-4 focus:py-2 focus:text-sm focus:font-mono"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-[4px] focus:px-4 focus:py-2 focus:text-sm focus:font-mono focus:outline-none"
         style={{ background: 'var(--c-accent)', color: 'var(--c-base)' }}
       >
         Skip to content
