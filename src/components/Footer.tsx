@@ -7,8 +7,9 @@ export function Footer() {
       style={{ borderTop: '1px solid var(--c-border)', transition: 'border-color 250ms ease' }}
     >
       <div className="w-full pt-8">
+        {/* Mobile: stacked column. Desktop: 3-col grid */}
         <div
-          className="grid items-center"
+          className="flex flex-col gap-3 sm:grid sm:items-center"
           style={{
             gridTemplateColumns: '1fr auto 1fr',
             fontFamily: '"JetBrains Mono", monospace',
@@ -17,10 +18,13 @@ export function Footer() {
           }}
         >
           <span>SHUBHENDU · DUBAI, UAE</span>
+
           <span aria-label="Coordinates: 25.2048 degrees North, 55.2708 degrees East">
             DXB · 25.2048° N, 55.2708° E
           </span>
-          <div className="flex justify-end">
+
+          {/* Arrow: right-aligned on both mobile and desktop */}
+          <div className="flex sm:justify-end">
             <a
               href="#home"
               aria-label="Scroll to top"

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const RADIUS_DEFAULT  = 50   // px diameter — inverting circle at rest
 const RADIUS_MAGNETIC = 50   // px diameter — same size when snapped
@@ -33,6 +33,11 @@ function removeSemibold(el: HTMLElement) {
 }
 
 export function CustomCursor() {
+  // Don't render anything on touch / coarse-pointer devices
+  const [enabled] = useState(() =>
+    !window.matchMedia('(hover: none), (pointer: coarse)').matches
+  )
+
   const ringRef   = useRef<HTMLDivElement>(null)
   const dotRef    = useRef<HTMLDivElement>(null)
   const state = useRef({
@@ -45,7 +50,7 @@ export function CustomCursor() {
   const prevSemiboldEl = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
-    if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return
+    if (!enabled) return
 
     const ring = ringRef.current
     const dot  = dotRef.current
@@ -121,6 +126,8 @@ export function CustomCursor() {
       if (prevSemiboldEl.current) removeSemibold(prevSemiboldEl.current)
     }
   }, [])
+
+  if (!enabled) return null
 
   return (
     <>
