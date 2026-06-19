@@ -5,11 +5,12 @@ export interface HeroMetric {
   numericTarget: number
   prefix: string
   suffix: string
+  isStatic?: boolean   // skip count-up animation (e.g. symbol values)
 }
 
 export const HERO_METRICS: HeroMetric[] = [
-  { value: '$2.4B+', label: 'payment volume', accent: '$', numericTarget: 2.4, prefix: '$', suffix: 'B+' },
-  { value: '99.98%', label: 'uptime delivered', accent: '.98', numericTarget: 99.98, prefix: '', suffix: '%' },
-  { value: '8,400', label: 'peak TPS', accent: ',', numericTarget: 8400, prefix: '', suffix: '' },
-  { value: '12ms', label: 'p95 latency', accent: 'ms', numericTarget: 12, prefix: '', suffix: 'ms' },
+  { value: '6',  label: 'years shipping code',  accent: '6',  numericTarget: 6,  prefix: '', suffix: '' },
+  { value: '3+', label: 'domains worked across', accent: '+', numericTarget: 3,  prefix: '', suffix: '+' },
+  { value: '12+',label: 'side projects built',  accent: '+', numericTarget: 12, prefix: '', suffix: '+' },
+  { value: '∞',  label: 'things yet to learn',  accent: '∞', numericTarget: 0,  prefix: '', suffix: '', isStatic: true },
 ]
