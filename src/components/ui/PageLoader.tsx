@@ -134,10 +134,13 @@ export function PageLoader() {
   }, [])
 
   useEffect(() => {
-    const prev = document.body.style.overflow
     document.body.style.overflow = 'hidden'
-    return () => { document.body.style.overflow = prev }
+    return () => { document.body.style.overflow = '' }
   }, [])
+
+  useEffect(() => {
+    if (gone) document.body.style.overflow = ''
+  }, [gone])
 
   if (gone) return null
 
