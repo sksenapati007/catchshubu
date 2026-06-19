@@ -43,9 +43,9 @@ export function Footer() {
         {/* Mobile: 2-col — text stack left, arrow right */}
         <div className="flex items-center justify-between sm:hidden">
           <div className="flex flex-col gap-2">
-            <span>SHUBHENDU · DUBAI, UAE</span>
+            <span>SHUBHENDU</span>
             <span aria-label="Coordinates: 25.2048 degrees North, 55.2708 degrees East">
-              DXB · 25.2048° N, 55.2708° E
+              25.2048° N, 55.2708° E
             </span>
           </div>
           <ArrowBtn />
@@ -56,9 +56,9 @@ export function Footer() {
           className="hidden sm:grid items-center"
           style={{ gridTemplateColumns: '1fr auto 1fr' }}
         >
-          <span>SHUBHENDU · DUBAI, UAE</span>
+          <span>SHUBHENDU</span>
           <span aria-label="Coordinates: 25.2048 degrees North, 55.2708 degrees East">
-            DXB · 25.2048° N, 55.2708° E
+            25.2048° N, 55.2708° E
           </span>
           <div className="flex justify-end">
             <ArrowBtn />

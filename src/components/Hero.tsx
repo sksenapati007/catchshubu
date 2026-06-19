@@ -109,7 +109,7 @@ export function Hero() {
             </motion.div>
 
             <motion.div {...itemProps} className="mb-4">
-              <span className="eyebrow">catchshubu.dev · DXB</span>
+              <span className="eyebrow">catchshubu.dev</span>
             </motion.div>
 
             <motion.h1

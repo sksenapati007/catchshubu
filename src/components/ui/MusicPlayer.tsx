@@ -123,7 +123,7 @@ export function MusicPlayer() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: playing ? 'var(--c-accent, #C8FF00)' : '#555',
+                color: 'var(--c-accent, #C8FF00)',
                 transition: 'color 300ms ease',
                 pointerEvents: 'none',
               }}>
