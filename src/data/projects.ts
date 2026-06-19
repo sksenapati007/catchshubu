@@ -11,19 +11,7 @@ export interface Project {
   status?: 'live' | 'unpublished'
 }
 
-const PROJECTS_UNSORTED: Project[] = [
-  {
-    id: 'doctor-evidence',
-    year: '2019 — 2020',
-    yearStart: 2019,
-    name: 'Doctor Evidence — Health Analytics',
-    discipline: 'Product',
-    description:
-      'Clinical data intelligence platform for evidence-based medicine. Worked on data extraction pipelines and the researcher-facing interface for synthesising clinical trial outcomes at scale.',
-    stack: ['React', 'Python', 'REST APIs', 'D3.js', 'PostgreSQL'],
-    metric: { label: 'Industry', value: 'Health · MedTech' },
-    role: 'Product Engineer',
-  },
+export const PROJECTS: Project[] = [
   {
     id: 'sonyliv',
     year: '2020 — 2021',
@@ -50,15 +38,15 @@ const PROJECTS_UNSORTED: Project[] = [
     status: 'unpublished',
   },
   {
-    id: 'crm-telephony',
-    year: '2021 — 2022',
+    id: 'doctor-evidence',
+    year: '2021',
     yearStart: 2021,
-    name: 'CRM & Telephony Bridge',
+    name: 'Doctor Evidence — Health Analytics',
     discipline: 'Product',
     description:
-      'Unified agent desktop integrating 3 CRM systems with VoIP telephony and real-time customer context. Scoped, specced, and shipped — wore the PM and engineer hat simultaneously.',
-    stack: ['React', 'WebRTC', 'REST APIs', 'Node.js'],
-    metric: { label: 'Handle time reduced', value: '34%' },
+      'Clinical data intelligence platform for evidence-based medicine. Worked on data extraction pipelines and the researcher-facing interface for synthesising clinical trial outcomes at scale.',
+    stack: ['React', 'Python', 'REST APIs', 'D3.js', 'PostgreSQL'],
+    metric: { label: 'Industry', value: 'Health · MedTech' },
     role: 'Product Engineer',
   },
   {
@@ -109,6 +97,16 @@ const PROJECTS_UNSORTED: Project[] = [
     metric: { label: 'Daily time saved', value: '~15 min' },
     role: 'Solo Builder',
   },
+  {
+    id: 'crm-telephony',
+    year: '2025 — 2026',
+    yearStart: 2025,
+    name: 'CRM & Telephony Bridge',
+    discipline: 'Product',
+    description:
+      'Unified agent desktop integrating 3 CRM systems with VoIP telephony and real-time customer context. Scoped, specced, and shipped — wore the PM and engineer hat simultaneously.',
+    stack: ['React', 'WebRTC', 'REST APIs', 'Node.js'],
+    metric: { label: 'Handle time reduced', value: '34%' },
+    role: 'Product Engineer',
+  },
 ]
-
-export const PROJECTS = [...PROJECTS_UNSORTED].sort((a, b) => a.yearStart - b.yearStart)

@@ -68,7 +68,7 @@ export function Projects() {
           role="list"
           aria-label="Projects"
           tabIndex={0}
-          className="no-scrollbar flex gap-4 sm:gap-5 overflow-x-auto px-4 sm:px-6 lg:px-10 xl:px-14 cursor-grab active:cursor-grabbing select-none"
+          className="no-scrollbar flex gap-4 sm:gap-5 overflow-x-auto px-4 sm:px-6 lg:px-10 xl:px-14 cursor-grab active:cursor-grabbing select-none max-sm:snap-x max-sm:snap-mandatory"
           style={{ paddingBottom: '4px', WebkitOverflowScrolling: 'touch' }}
           onMouseDown={onMouseDown}
           onMouseLeave={onMouseLeave}
