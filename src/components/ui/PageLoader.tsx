@@ -26,9 +26,9 @@ export function PageLoader() {
     canvas.width  = W
     canvas.height = H
 
-    const FONT_SIZE   = 14
-    const COL_WIDTH   = Math.round(FONT_SIZE * 1.6)
-    const LINE_HEIGHT = FONT_SIZE + 2
+    const FONT_SIZE   = 15
+    const COL_WIDTH   = Math.round(FONT_SIZE * 1.7)
+    const LINE_HEIGHT = FONT_SIZE + 5
     const cols        = Math.floor(W / COL_WIDTH)
 
     ctx.font      = `${FONT_SIZE}px "JetBrains Mono", monospace`
@@ -49,8 +49,12 @@ export function PageLoader() {
     let raf: number
 
     const draw = () => {
-      ctx.fillStyle = 'rgba(0,0,0,0.08)'
+      // Slow fade so previous chars dim gradually without blurring
+      ctx.fillStyle = 'rgba(0,0,0,0.15)'
       ctx.fillRect(0, 0, W, H)
+
+      // No shadow/blur on ctx — it smears glyphs and kills readability
+      ctx.shadowBlur = 0
 
       for (let i = 0; i < cols; i++) {
         const { word, y, speed } = state[i]
@@ -61,18 +65,16 @@ export function PageLoader() {
           if (charY < -LINE_HEIGHT || charY > H + LINE_HEIGHT) continue
 
           if (ci === 0) {
-            ctx.fillStyle  = '#C8FF00'
-            ctx.shadowColor = '#C8FF00'
-            ctx.shadowBlur  = 8
+            // Lead: pure white-green, fully opaque, sharp
+            ctx.fillStyle = '#D4FF40'
           } else {
-            const alpha = Math.max(0.08, 1 - ci * 0.13)
-            ctx.fillStyle  = `rgba(168,220,0,${alpha})`
-            ctx.shadowBlur = 0
+            // Trail: stays legible for the full word length
+            const alpha = Math.max(0.25, 1 - ci * 0.07)
+            ctx.fillStyle = `rgba(160,210,0,${alpha})`
           }
 
           ctx.fillText(word[ci], x, charY)
         }
-        ctx.shadowBlur = 0
 
         state[i].y += speed
 
