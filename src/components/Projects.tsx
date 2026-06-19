@@ -126,7 +126,7 @@ export function Projects() {
               }}
               title="Click to skip"
             >
-              {/* Accent circle */}
+              {/* Ambient glow — diffuse, no hard shape */}
               <div
                 aria-hidden="true"
                 style={{
@@ -134,26 +134,28 @@ export function Projects() {
                   top: '50%',
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
-                  width: 'clamp(180px, 22vw, 280px)',
-                  aspectRatio: '1 / 1',
-                  borderRadius: '50%',
-                  background: 'var(--c-accent)',
+                  width: '600px',
+                  height: '400px',
+                  background: 'radial-gradient(ellipse at center, var(--c-accent) 0%, transparent 70%)',
+                  opacity: 0.06,
+                  filter: 'blur(40px)',
                   zIndex: 1,
-                  opacity: 0.9,
+                  pointerEvents: 'none',
                 }}
               />
-              {/* Manifesto text (above circle) */}
+              {/* Manifesto text */}
               <p
                 style={{
                   fontFamily: '"JetBrains Mono", monospace',
                   fontSize: 'clamp(22px, 4vw, 54px)',
                   lineHeight: 1.35,
-                  color: 'var(--c-text-2)',
+                  color: 'var(--c-text-1)',
                   textAlign: 'center',
                   position: 'relative',
                   zIndex: 2,
                   maxWidth: '700px',
                   letterSpacing: '-0.01em',
+                  textShadow: '0 0 80px color-mix(in srgb, var(--c-accent) 20%, transparent)',
                 }}
               >
                 i write systems<br />
