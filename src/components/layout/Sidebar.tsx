@@ -68,6 +68,13 @@ export function Sidebar() {
 
   return (
     <>
+      {/* Decorative backing pattern — sits behind the glass sidebar, makes blur visible */}
+      <div
+        aria-hidden="true"
+        className="hidden lg:block fixed left-0 top-0 h-screen w-[52px] sidebar-backing"
+        style={{ zIndex: 49 }}
+      />
+
       {/* Desktop sidebar */}
       <nav
         aria-label="Main navigation"

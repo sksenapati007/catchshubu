@@ -229,16 +229,44 @@
     border: 1px solid rgba(0, 0, 0, 0.10) !important;
   }
 
+  /* ── Decorative pattern backing — sits behind the glass sidebar (z-49) ── */
+  .sidebar-backing {
+    background:
+      radial-gradient(ellipse 52px 240px at 50% 30%, rgba(200, 255, 0, 0.18) 0%, transparent 100%),
+      radial-gradient(ellipse 52px 180px at 50% 68%, rgba(200, 255, 0, 0.09) 0%, transparent 100%),
+      repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 16px,
+        rgba(200, 255, 0, 0.04) 16px,
+        rgba(200, 255, 0, 0.04) 17px
+      ),
+      #0A0A0A;
+  }
+  [data-theme="light"] .sidebar-backing {
+    background:
+      radial-gradient(ellipse 52px 240px at 50% 30%, rgba(179, 0, 119, 0.16) 0%, transparent 100%),
+      radial-gradient(ellipse 52px 180px at 50% 68%, rgba(179, 0, 119, 0.08) 0%, transparent 100%),
+      repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 16px,
+        rgba(179, 0, 119, 0.04) 16px,
+        rgba(179, 0, 119, 0.04) 17px
+      ),
+      #F7F5F0;
+  }
+
   /* ── Glassmorphism — sidebar nav ── */
   .glass-sidebar {
-    background: rgba(10, 10, 10, 0.72) !important;
-    backdrop-filter: blur(18px) saturate(1.4);
-    -webkit-backdrop-filter: blur(18px) saturate(1.4);
-    border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+    background: rgba(10, 10, 10, 0.55) !important;
+    backdrop-filter: blur(12px) saturate(1.6);
+    -webkit-backdrop-filter: blur(12px) saturate(1.6);
+    border-right: 1px solid rgba(200, 255, 0, 0.10) !important;
   }
   [data-theme="light"] .glass-sidebar {
-    background: rgba(247, 245, 240, 0.78) !important;
-    border-right: 1px solid rgba(0, 0, 0, 0.07) !important;
+    background: rgba(247, 245, 240, 0.60) !important;
+    border-right: 1px solid rgba(179, 0, 119, 0.12) !important;
   }
 
   /* ── Glassmorphism — mobile bottom nav ── */
