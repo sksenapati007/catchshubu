@@ -128,7 +128,10 @@ export function About() {
                   I also hold a CSPO — not because I wanted to manage products, but because
                   I kept finding myself more curious about <em style={{ color: 'var(--c-text-1)', fontStyle: 'normal' }}>why</em> we
                   were building something than <em style={{ color: 'var(--c-text-1)', fontStyle: 'normal' }}>how</em>.
-                  The certification gave language to that instinct.
+                  When something catches my attention that way, I tend to follow it all the
+                  way — researching it properly, spinning up an MVP or POC to see if the
+                  idea actually holds, or pursuing a certification when I want more than
+                  surface familiarity.
                 </p>
                 <p>
                   The design side crept in gradually. I find it hard to feel done with
