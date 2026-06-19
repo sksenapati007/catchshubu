@@ -78,6 +78,28 @@ export function Sidebar() {
           {NAV_ITEMS.map(item => <NavItem key={item.id} item={item} active={active} />)}
         </div>
 
+        {/* Vertical marquee strip */}
+        <p
+          aria-hidden="true"
+          style={{
+            fontFamily: '"JetBrains Mono", monospace',
+            fontSize: '9px',
+            fontWeight: 600,
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase' as const,
+            color: 'var(--c-text-3)',
+            writingMode: 'vertical-rl' as const,
+            transform: 'rotate(180deg)',
+            whiteSpace: 'nowrap',
+            opacity: 0.6,
+            marginBottom: '12px',
+            pointerEvents: 'none',
+            userSelect: 'none' as const,
+          }}
+        >
+          CATCHSHUBU · ALWAYS SHIPPING · DUBAI, UAE · PRODUCT BUILDER © 2025
+        </p>
+
         {/* Theme toggle */}
         <button
           type="button"
