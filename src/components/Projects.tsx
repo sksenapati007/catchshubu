@@ -134,11 +134,10 @@ export function Projects() {
                   top: '50%',
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
-                  width: '600px',
-                  height: '400px',
-                  background: 'radial-gradient(ellipse at center, var(--c-accent) 0%, transparent 70%)',
-                  opacity: 0.06,
-                  filter: 'blur(40px)',
+                  width: '800px',
+                  height: '500px',
+                  background: 'radial-gradient(ellipse at center, var(--c-accent) 0%, transparent 65%)',
+                  opacity: 0.18,
                   zIndex: 1,
                   pointerEvents: 'none',
                 }}
@@ -155,7 +154,7 @@ export function Projects() {
                   zIndex: 2,
                   maxWidth: '700px',
                   letterSpacing: '-0.01em',
-                  textShadow: '0 0 80px color-mix(in srgb, var(--c-accent) 20%, transparent)',
+                  textShadow: '0 0 60px var(--c-accent)',
                 }}
               >
                 i write systems<br />
