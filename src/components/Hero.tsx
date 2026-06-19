@@ -122,7 +122,7 @@ export function Hero() {
               className="font-serif font-normal leading-[1.06] mb-0"
               style={{ fontSize: HS, color: 'var(--c-text-1)' }}
             >
-              Senior engineer working at the intersection of
+              Working at the intersection of
             </motion.h1>
 
             <motion.div
@@ -145,10 +145,10 @@ export function Hero() {
               className="mb-8 text-sm sm:text-base leading-relaxed"
               style={{ color: 'var(--c-text-2)', maxWidth: '480px' }}
             >
-              Strategic engineer combining{' '}
-              <span style={{ color: 'var(--c-text-1)' }}>deep technical execution</span>{' '}
-              with an MBA mindset — building systems that scale and shipping products
-              that make business sense.
+              The problems I find most interesting tend to sit where{' '}
+              <span style={{ color: 'var(--c-text-1)' }}>technical decisions have product consequences</span>{' '}
+              — and product ones have technical costs. I've spent enough time in that
+              space to feel comfortable there, though there's always more to figure out.
             </motion.p>
 
             <motion.div {...itemProps}>
