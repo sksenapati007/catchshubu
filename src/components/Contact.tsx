@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { Mail, Linkedin, Github, FileText } from 'lucide-react'
+import { Mail, Linkedin, Github, FileText, Instagram } from 'lucide-react'
 
 const CONTACT_LINKS = [
   {
@@ -26,6 +26,12 @@ const CONTACT_LINKS = [
     href: 'https://catchshubu.substack.com',
     Icon: FileText,
   },
+  {
+    label: 'Instagram',
+    handle: '@shutter_alpha',
+    href: 'https://instagram.com/shutter_alpha',
+    Icon: Instagram,
+  },
 ]
 
 const card = {
@@ -46,7 +52,7 @@ export function Contact() {
       <hr className="section-divider" />
 
       <div className="px-4 sm:px-6 lg:px-10 xl:px-14 py-[72px]">
-        <div className="mx-auto max-w-[720px] lg:mx-0">
+        <div>
 
           <motion.div
             initial={reduced ? false : { opacity: 0 }}
@@ -67,7 +73,7 @@ export function Contact() {
             className="font-serif font-normal mb-10"
             style={{ fontSize: '28px', color: 'var(--c-text-1)' }}
           >
-            Let's build something
+            Let's connect or build something
           </motion.h2>
 
           <motion.div
@@ -75,7 +81,7 @@ export function Contact() {
             initial={reduced ? false : 'hidden'}
             whileInView={reduced ? undefined : 'visible'}
             viewport={vp}
-            className="grid grid-cols-1 gap-3 sm:grid-cols-2"
+            className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5"
           >
             {CONTACT_LINKS.map(({ label, handle, href, Icon }) => (
               <motion.a

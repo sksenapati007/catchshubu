@@ -1,6 +1,6 @@
-import React from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
-import { Github, ExternalLink } from 'lucide-react'
+import React, { useState } from 'react'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+import { Github, ExternalLink, FlaskConical } from 'lucide-react'
 import { Tag } from '@/components/ui/Tag'
 import { SpotlightCard } from '@/components/ui/SpotlightCard'
 
@@ -73,9 +73,232 @@ const grid = {
   visible: { transition: { staggerChildren: 0.07 } },
 }
 
+type Tab = 'code' | 'case-studies'
+
+const TABS: { id: Tab; label: string }[] = [
+  { id: 'code',         label: 'Code' },
+  { id: 'case-studies', label: 'Case Studies' },
+]
+
+function TabBar({ active, onChange }: { active: Tab; onChange: (t: Tab) => void }) {
+  return (
+    <div
+      className="inline-flex mb-10"
+      role="tablist"
+      aria-label="Personal projects categories"
+      style={{
+        border: '1px solid var(--c-border)',
+        borderRadius: '6px',
+        padding: '3px',
+        gap: '2px',
+        background: 'var(--c-surface)',
+      }}
+    >
+      {TABS.map(tab => {
+        const isActive = active === tab.id
+        return (
+          <button
+            key={tab.id}
+            role="tab"
+            aria-selected={isActive}
+            onClick={() => onChange(tab.id)}
+            style={{
+              fontFamily: '"JetBrains Mono", monospace',
+              fontSize: '11px',
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              padding: '6px 16px',
+              borderRadius: '4px',
+              border: 'none',
+              cursor: 'pointer',
+              transition: 'background 180ms ease, color 180ms ease',
+              background: isActive ? 'var(--c-accent)' : 'transparent',
+              color: isActive ? 'var(--c-base)' : 'var(--c-text-3)',
+            }}
+          >
+            {tab.label}
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+function CodeGrid({ reduced }: { reduced: boolean | null }) {
+  const vp = reduced ? undefined : { once: true, margin: '-60px' as const }
+  return (
+    <motion.div
+      key="code"
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.25 }}
+    >
+      <motion.div
+        variants={reduced ? undefined : grid}
+        initial={reduced ? false : 'hidden'}
+        whileInView={reduced ? undefined : 'visible'}
+        viewport={vp}
+        className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {PERSONAL_PROJECTS.map(p => (
+          <MotionSpotlightCard
+            key={p.name}
+            variants={reduced ? undefined : card}
+            style={{
+              border: '1px solid var(--c-border)',
+              borderRadius: '6px',
+              padding: '20px',
+              background: 'var(--c-surface)',
+              display: 'flex',
+              flexDirection: 'column',
+              transition: 'border-color 200ms ease',
+            }}
+            onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => (e.currentTarget.style.borderColor = 'var(--c-muted)')}
+            onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => (e.currentTarget.style.borderColor = 'var(--c-border)')}
+          >
+            <h3
+              className="font-serif leading-snug mb-2"
+              style={{ fontSize: '18px', color: 'var(--c-text-1)' }}
+            >
+              {p.name}
+            </h3>
+
+            <p
+              className="text-[13px] leading-relaxed flex-1 mb-4"
+              style={{ color: 'var(--c-text-2)' }}
+            >
+              {p.description}
+            </p>
+
+            <div className="flex flex-wrap gap-1.5 mb-4">
+              {p.tags.map(t => <Tag key={t}>{t}</Tag>)}
+            </div>
+
+            <div
+              className="flex items-center gap-5 pt-3"
+              style={{ borderTop: '1px solid var(--c-border)' }}
+            >
+              <a
+                href={p.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${p.name} source code on GitHub`}
+                className="flex items-center gap-1.5"
+                style={{
+                  fontFamily: '"JetBrains Mono", monospace',
+                  fontSize: '11px',
+                  color: 'var(--c-text-3)',
+                  textDecoration: 'none',
+                  transition: 'color 150ms ease',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'var(--c-text-1)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'var(--c-text-3)')}
+              >
+                <Github size={13} strokeWidth={1.5} />
+                Code
+              </a>
+              {p.demo && (
+                <a
+                  href={p.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${p.name} live demo`}
+                  className="flex items-center gap-1.5"
+                  style={{
+                    fontFamily: '"JetBrains Mono", monospace',
+                    fontSize: '11px',
+                    color: 'var(--c-text-3)',
+                    textDecoration: 'none',
+                    transition: 'color 150ms ease',
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--c-text-1)')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'var(--c-text-3)')}
+                >
+                  <ExternalLink size={13} strokeWidth={1.5} />
+                  Live Demo
+                </a>
+              )}
+            </div>
+          </MotionSpotlightCard>
+        ))}
+      </motion.div>
+    </motion.div>
+  )
+}
+
+function CaseStudiesPlaceholder() {
+  return (
+    <motion.div
+      key="case-studies"
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.25 }}
+      style={{
+        border: '1px dashed var(--c-border)',
+        borderRadius: '6px',
+        padding: '56px 24px',
+        background: 'var(--c-surface)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '16px',
+        textAlign: 'center',
+        width: '100%',
+      }}
+    >
+      <FlaskConical
+        size={24}
+        strokeWidth={1.5}
+        style={{ color: 'var(--c-text-3)', opacity: 0.45 }}
+      />
+      <p
+        style={{
+          fontFamily: '"JetBrains Mono", monospace',
+          fontSize: '12px',
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+          color: 'var(--c-text-2)',
+        }}
+      >
+        UI / UX &amp; Product case studies
+      </p>
+      <p
+        style={{
+          fontSize: '13px',
+          color: 'var(--c-text-3)',
+          maxWidth: '420px',
+          lineHeight: '1.6',
+        }}
+      >
+        Documenting design and product decisions from past work. Coming together slowly.
+      </p>
+      <span
+        style={{
+          fontFamily: '"JetBrains Mono", monospace',
+          fontSize: '10px',
+          letterSpacing: '0.14em',
+          textTransform: 'uppercase',
+          color: 'var(--c-accent)',
+          border: '1px solid var(--c-accent)',
+          borderRadius: '3px',
+          padding: '3px 10px',
+          opacity: 0.7,
+          marginTop: '4px',
+        }}
+      >
+        Coming Soon
+      </span>
+    </motion.div>
+  )
+}
+
 export function PersonalProjects() {
   const reduced = useReducedMotion()
   const vp = reduced ? undefined : { once: true, margin: '-60px' as const }
+  const [activeTab, setActiveTab] = useState<Tab>('code')
 
   return (
     <section id="personal-projects" aria-labelledby="personal-projects-heading">
@@ -90,7 +313,7 @@ export function PersonalProjects() {
           transition={{ duration: 0.5 }}
           className="mb-2"
         >
-          <span className="eyebrow">Personal Projects</span>
+          <span className="eyebrow">Personal</span>
         </motion.div>
 
         <motion.h2
@@ -110,101 +333,20 @@ export function PersonalProjects() {
           whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
           viewport={vp}
           transition={{ duration: 0.5, delay: 0.05 }}
-          className="mb-12 text-sm sm:text-base leading-relaxed max-w-[600px]"
+          className="mb-10 text-sm sm:text-base leading-relaxed max-w-[600px]"
           style={{ color: 'var(--c-text-2)' }}
         >
-          Side projects and experiments — from PWAs and Flutter apps to CLIs and a nostalgic C++ console app.
+          Side projects, experiments, and thinking-out-loud work — code and case studies.
         </motion.p>
 
-        <motion.div
-          variants={reduced ? undefined : grid}
-          initial={reduced ? false : 'hidden'}
-          whileInView={reduced ? undefined : 'visible'}
-          viewport={vp}
-          className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {PERSONAL_PROJECTS.map(p => (
-            <MotionSpotlightCard
-              key={p.name}
-              variants={reduced ? undefined : card}
-              style={{
-                border: '1px solid var(--c-border)',
-                borderRadius: '6px',
-                padding: '20px',
-                background: 'var(--c-surface)',
-                display: 'flex',
-                flexDirection: 'column',
-                transition: 'border-color 200ms ease',
-              }}
-              onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => (e.currentTarget.style.borderColor = 'var(--c-muted)')}
-              onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => (e.currentTarget.style.borderColor = 'var(--c-border)')}
-            >
-              <h3
-                className="font-serif leading-snug mb-2"
-                style={{ fontSize: '18px', color: 'var(--c-text-1)' }}
-              >
-                {p.name}
-              </h3>
+        <TabBar active={activeTab} onChange={setActiveTab} />
 
-              <p
-                className="text-[13px] leading-relaxed flex-1 mb-4"
-                style={{ color: 'var(--c-text-2)' }}
-              >
-                {p.description}
-              </p>
-
-              <div className="flex flex-wrap gap-1.5 mb-4">
-                {p.tags.map(t => <Tag key={t}>{t}</Tag>)}
-              </div>
-
-              <div
-                className="flex items-center gap-5 pt-3"
-                style={{ borderTop: '1px solid var(--c-border)' }}
-              >
-                <a
-                  href={p.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${p.name} source code on GitHub`}
-                  className="flex items-center gap-1.5"
-                  style={{
-                    fontFamily: '"JetBrains Mono", monospace',
-                    fontSize: '11px',
-                    color: 'var(--c-text-3)',
-                    textDecoration: 'none',
-                    transition: 'color 150ms ease',
-                  }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--c-text-1)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'var(--c-text-3)')}
-                >
-                  <Github size={13} strokeWidth={1.5} />
-                  Code
-                </a>
-                {p.demo && (
-                  <a
-                    href={p.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${p.name} live demo`}
-                    className="flex items-center gap-1.5"
-                    style={{
-                      fontFamily: '"JetBrains Mono", monospace',
-                      fontSize: '11px',
-                      color: 'var(--c-text-3)',
-                      textDecoration: 'none',
-                      transition: 'color 150ms ease',
-                    }}
-                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--c-text-1)')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--c-text-3)')}
-                  >
-                    <ExternalLink size={13} strokeWidth={1.5} />
-                    Live Demo
-                  </a>
-                )}
-              </div>
-            </MotionSpotlightCard>
-          ))}
-        </motion.div>
+        <AnimatePresence mode="wait">
+          {activeTab === 'code'
+            ? <CodeGrid key="code" reduced={reduced} />
+            : <CaseStudiesPlaceholder key="case-studies" />
+          }
+        </AnimatePresence>
 
       </div>
     </section>

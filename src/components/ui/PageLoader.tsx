@@ -40,8 +40,8 @@ const WORDS = [
   'BENCHMARK', 'FEATURE', 'BASELINE', 'EFFORT', 'STAKEHOLDER',
 ]
 
-// Minimum splash duration — human attention span target (milliseconds)
-const MIN_DISPLAY_MS = 18000
+// Minimum splash duration (milliseconds)
+const MIN_DISPLAY_MS = 12000
 
 export function PageLoader() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
