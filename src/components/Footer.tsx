@@ -45,7 +45,7 @@ export function Footer() {
           <div className="flex flex-col gap-2">
             <span>SHUBHENDU</span>
             <span aria-label="Coordinates: 25.2048 degrees North, 55.2708 degrees East">
-              25.2048° N, 55.2708° E
+              DXB · 25.2048° N, 55.2708° E
             </span>
           </div>
           <ArrowBtn />

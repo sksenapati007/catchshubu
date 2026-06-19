@@ -17,7 +17,9 @@ export function PageSpotlight() {
     let cy = window.innerHeight / 2
 
     const paint = () => {
-      el.style.background = `radial-gradient(700px circle at ${cx}px ${cy}px, hsl(var(--accent) / 0.04), transparent 75%)`
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light'
+      const color = isLight ? 'hsl(320 100% 50% / 0.08)' : 'hsl(var(--accent) / 0.04)'
+      el.style.background = `radial-gradient(700px circle at ${cx}px ${cy}px, ${color}, transparent 75%)`
     }
 
     const onMove = (e: MouseEvent) => {
