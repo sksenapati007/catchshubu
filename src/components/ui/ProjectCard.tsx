@@ -25,7 +25,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <article
       role="listitem"
-      className="flex flex-col flex-shrink-0"
+      className="flex flex-col flex-shrink-0 max-sm:snap-center"
       style={{
         width: '280px',
         background: 'var(--c-surface)',
