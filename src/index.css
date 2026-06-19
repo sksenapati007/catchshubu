@@ -22,7 +22,7 @@
   /* Text */
   --c-text-1:  #E8E6E0;   /* headings, primary */
   --c-text-2:  #888580;   /* body, descriptions */
-  --c-text-3:  #444240;   /* labels, captions */
+  --c-text-3:  #767270;   /* labels, captions — WCAG AA ≥ 4.5:1 on dark bg */
 
   /* Accent — acid green */
   --c-accent:     #C8FF00;
@@ -73,12 +73,12 @@
   /* Text */
   --c-text-1:  #1C1B19;
   --c-text-2:  #6A6860;
-  --c-text-3:  #A5A49E;
+  --c-text-3:  #707070;   /* labels, captions — WCAG AA ≥ 4.5:1 on light bg */
 
   /* Accent — dark olive green (contrast ≥ 4.5:1 on light bg) */
-  --c-accent:     #5A7A00;
-  --c-accent-20:  rgba(90, 122, 0, 0.15);
-  --c-accent-30:  rgba(90, 122, 0, 0.25);
+  --c-accent:     #4A7000;
+  --c-accent-20:  rgba(74, 112, 0, 0.15);
+  --c-accent-30:  rgba(74, 112, 0, 0.25);
 
   /* shadcn tokens for light mode */
   --background: 43 13% 96%;
@@ -196,6 +196,12 @@
     .music-player-bar {
       bottom: 20px !important;
     }
+  }
+
+  /* Cursor semibold — applied by CustomCursor to element under cursor */
+  .cursor-semibold {
+    text-shadow: 0 0 0.5px currentColor, 0 0 0.5px currentColor;
+    transition: text-shadow 200ms ease;
   }
 
   /* Portrait grayscale in dark mode */

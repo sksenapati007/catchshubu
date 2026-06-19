@@ -24,7 +24,7 @@ const Index = () => {
       {/* Skip to content */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-[4px] focus:px-4 focus:py-2 focus:text-sm focus:font-mono focus:outline-none"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-[4px] focus:px-4 focus:py-2 focus:text-sm focus:font-mono"
         style={{ background: 'var(--c-accent)', color: 'var(--c-base)' }}
       >
         Skip to content

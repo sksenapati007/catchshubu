@@ -1,0 +1,435 @@
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link:
+          - /url: /music
+      - generic [ref=e6]:
+        - generic [ref=e8]:
+          - textbox "Search by tracks, artists, genres, etc." [ref=e9]
+          - img [ref=e10] [cursor=pointer]
+        - button "Usage Policy" [ref=e12] [cursor=pointer]:
+          - strong [ref=e13]: Usage Policy
+          - link:
+            - /url: /usage-policy
+        - img [ref=e17] [cursor=pointer]
+  - generic [ref=e21]:
+    - generic:
+      - generic:
+        - heading "undefined related tracks" [level=4]
+      - generic:
+        - combobox:
+          - option "Similar" [selected]
+          - option "Popular"
+          - option "Newest"
+          - option "Undiscovered"
+    - generic [ref=e26]:
+      - img [ref=e28] [cursor=pointer]
+      - img [ref=e31] [cursor=pointer]
+  - generic [ref=e36]:
+    - generic [ref=e37]:
+      - heading "Music made by real artists, No AI" [level=4] [ref=e38]
+      - heading "Used in millions of videos" [level=1] [ref=e39]
+    - generic [ref=e42]:
+      - link "10k views 267" [ref=e43] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=eEMHfwltXmE
+        - generic [ref=e45]:
+          - generic [ref=e46]: 10k views
+          - generic [ref=e47]:
+            - img [ref=e48]
+            - text: "267"
+      - link "25k views 57" [ref=e50] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=Fvm9bqfvl0o
+        - generic [ref=e52]:
+          - generic [ref=e53]: 25k views
+          - generic [ref=e54]:
+            - img [ref=e55]
+            - text: "57"
+      - link "36k views 3k" [ref=e57] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=SNzkA88tsM4
+        - generic [ref=e59]:
+          - generic [ref=e60]: 36k views
+          - generic [ref=e61]:
+            - img [ref=e62]
+            - text: 3k
+      - link "55k views 3k" [ref=e64] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=d5rZ7UjPYcI
+        - generic [ref=e66]:
+          - generic [ref=e67]: 55k views
+          - generic [ref=e68]:
+            - img [ref=e69]
+            - text: 3k
+      - link "16k views 277" [ref=e71] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=MnI7GM_PX4Y
+        - generic [ref=e73]:
+          - generic [ref=e74]: 16k views
+          - generic [ref=e75]:
+            - img [ref=e76]
+            - text: "277"
+      - link "194k views 3k" [ref=e78] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=p3NKCIHV-xE
+        - generic [ref=e80]:
+          - generic [ref=e81]: 194k views
+          - generic [ref=e82]:
+            - img [ref=e83]
+            - text: 3k
+      - link "14k views 774" [ref=e85] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=9CmkwKxS0F0
+        - generic [ref=e87]:
+          - generic [ref=e88]: 14k views
+          - generic [ref=e89]:
+            - img [ref=e90]
+            - text: "774"
+      - link "203k views 5k" [ref=e92] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=UtKKUDcddb0
+        - generic [ref=e94]:
+          - generic [ref=e95]: 203k views
+          - generic [ref=e96]:
+            - img [ref=e97]
+            - text: 5k
+      - link "83k views 5k" [ref=e99] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=_XGM7hBmu8I
+        - generic [ref=e101]:
+          - generic [ref=e102]: 83k views
+          - generic [ref=e103]:
+            - img [ref=e104]
+            - text: 5k
+      - link "116k views 3k" [ref=e106] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=Oqnyoqo5sQk
+        - generic [ref=e108]:
+          - generic [ref=e109]: 116k views
+          - generic [ref=e110]:
+            - img [ref=e111]
+            - text: 3k
+      - link "87k views 2k" [ref=e113] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=BOYfJJ9c420
+        - generic [ref=e115]:
+          - generic [ref=e116]: 87k views
+          - generic [ref=e117]:
+            - img [ref=e118]
+            - text: 2k
+      - link "11k views 969" [ref=e120] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=88A6XMCL2PU
+        - generic [ref=e122]:
+          - generic [ref=e123]: 11k views
+          - generic [ref=e124]:
+            - img [ref=e125]
+            - text: "969"
+      - link "33k views 947" [ref=e127] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=x0N_lgI-7m4
+        - generic [ref=e129]:
+          - generic [ref=e130]: 33k views
+          - generic [ref=e131]:
+            - img [ref=e132]
+            - text: "947"
+      - link "13k views 697" [ref=e134] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=RtO3uDZhbF0
+        - generic [ref=e136]:
+          - generic [ref=e137]: 13k views
+          - generic [ref=e138]:
+            - img [ref=e139]
+            - text: "697"
+      - link "103k views 8k" [ref=e141] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=LvA4gqvn7O4
+        - generic [ref=e143]:
+          - generic [ref=e144]: 103k views
+          - generic [ref=e145]:
+            - img [ref=e146]
+            - text: 8k
+      - link "15k views 170" [ref=e148] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=8YIw9TrfA28
+        - generic [ref=e150]:
+          - generic [ref=e151]: 15k views
+          - generic [ref=e152]:
+            - img [ref=e153]
+            - text: "170"
+      - link "28k views 2k" [ref=e155] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=m2LPn7Gnz5o
+        - generic [ref=e157]:
+          - generic [ref=e158]: 28k views
+          - generic [ref=e159]:
+            - img [ref=e160]
+            - text: 2k
+      - link "39k views 700" [ref=e162] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=8VIqmz2VDgI
+        - generic [ref=e164]:
+          - generic [ref=e165]: 39k views
+          - generic [ref=e166]:
+            - img [ref=e167]
+            - text: "700"
+      - link "26k views 543" [ref=e169] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=nkyA-assAdo
+        - generic [ref=e171]:
+          - generic [ref=e172]: 26k views
+          - generic [ref=e173]:
+            - img [ref=e174]
+            - text: "543"
+      - link "47k views 7k" [ref=e176] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=IMnJNFhaj_M
+        - generic [ref=e178]:
+          - generic [ref=e179]: 47k views
+          - generic [ref=e180]:
+            - img [ref=e181]
+            - text: 7k
+      - link "36k views 2k" [ref=e183] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=5tTheVW47bg
+        - generic [ref=e185]:
+          - generic [ref=e186]: 36k views
+          - generic [ref=e187]:
+            - img [ref=e188]
+            - text: 2k
+      - link "66k views 3k" [ref=e190] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=wPWUGksuCbY
+        - generic [ref=e192]:
+          - generic [ref=e193]: 66k views
+          - generic [ref=e194]:
+            - img [ref=e195]
+            - text: 3k
+      - link "27k views 445" [ref=e197] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=QQF7LgAgr2E
+        - generic [ref=e199]:
+          - generic [ref=e200]: 27k views
+          - generic [ref=e201]:
+            - img [ref=e202]
+            - text: "445"
+      - link "19k views 2k" [ref=e204] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=iGopDleJ8dc
+        - generic [ref=e206]:
+          - generic [ref=e207]: 19k views
+          - generic [ref=e208]:
+            - img [ref=e209]
+            - text: 2k
+      - link "25k views 333" [ref=e211] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=BVTvq6fg1ns
+        - generic [ref=e213]:
+          - generic [ref=e214]: 25k views
+          - generic [ref=e215]:
+            - img [ref=e216]
+            - text: "333"
+      - link "32k views 33" [ref=e218] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=Y5gytUNuIYc
+        - generic [ref=e220]:
+          - generic [ref=e221]: 32k views
+          - generic [ref=e222]:
+            - img [ref=e223]
+            - text: "33"
+      - link "24k views 613" [ref=e225] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=pIgQIEV9WTE
+        - generic [ref=e227]:
+          - generic [ref=e228]: 24k views
+          - generic [ref=e229]:
+            - img [ref=e230]
+            - text: "613"
+      - link "37k views 1k" [ref=e232] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=kxtTt53nXTk
+        - generic [ref=e234]:
+          - generic [ref=e235]: 37k views
+          - generic [ref=e236]:
+            - img [ref=e237]
+            - text: 1k
+      - link "30k views 149" [ref=e239] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=ikiVpTRgUio
+        - generic [ref=e241]:
+          - generic [ref=e242]: 30k views
+          - generic [ref=e243]:
+            - img [ref=e244]
+            - text: "149"
+      - link "126k views 5k" [ref=e246] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=IXgeHxC7kL4
+        - generic [ref=e248]:
+          - generic [ref=e249]: 126k views
+          - generic [ref=e250]:
+            - img [ref=e251]
+            - text: 5k
+      - link "29k views 970" [ref=e253] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=cxnO0nvzbmc
+        - generic [ref=e255]:
+          - generic [ref=e256]: 29k views
+          - generic [ref=e257]:
+            - img [ref=e258]
+            - text: "970"
+      - link "22k views 530" [ref=e260] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=s1auDwTRqvY
+        - generic [ref=e262]:
+          - generic [ref=e263]: 22k views
+          - generic [ref=e264]:
+            - img [ref=e265]
+            - text: "530"
+      - link "25k views 593" [ref=e267] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=7gXISKEC1Gk
+        - generic [ref=e269]:
+          - generic [ref=e270]: 25k views
+          - generic [ref=e271]:
+            - img [ref=e272]
+            - text: "593"
+      - link "86k views 551" [ref=e274] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=O2W3M13aQ7Q
+        - generic [ref=e276]:
+          - generic [ref=e277]: 86k views
+          - generic [ref=e278]:
+            - img [ref=e279]
+            - text: "551"
+      - link "16k views 2k" [ref=e281] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=kwK320ukcpo
+        - generic [ref=e283]:
+          - generic [ref=e284]: 16k views
+          - generic [ref=e285]:
+            - img [ref=e286]
+            - text: 2k
+      - link "12k views 377" [ref=e288] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=y8zML05IEHw
+        - generic [ref=e290]:
+          - generic [ref=e291]: 12k views
+          - generic [ref=e292]:
+            - img [ref=e293]
+            - text: "377"
+      - link "106k views 1k" [ref=e295] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=xk-lww3F8Ck
+        - generic [ref=e297]:
+          - generic [ref=e298]: 106k views
+          - generic [ref=e299]:
+            - img [ref=e300]
+            - text: 1k
+      - link "22k views 297" [ref=e302] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=tbO3Wube7NQ
+        - generic [ref=e304]:
+          - generic [ref=e305]: 22k views
+          - generic [ref=e306]:
+            - img [ref=e307]
+            - text: "297"
+      - link "26k views 699" [ref=e309] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=HN_m0Kwhmvs
+        - generic [ref=e311]:
+          - generic [ref=e312]: 26k views
+          - generic [ref=e313]:
+            - img [ref=e314]
+            - text: "699"
+      - link "246k views 30k" [ref=e316] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=xx-D3PpUto4
+        - generic [ref=e318]:
+          - generic [ref=e319]: 246k views
+          - generic [ref=e320]:
+            - img [ref=e321]
+            - text: 30k
+      - link "11k views 742" [ref=e323] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=JOGkTQj98uo
+        - generic [ref=e325]:
+          - generic [ref=e326]: 11k views
+          - generic [ref=e327]:
+            - img [ref=e328]
+            - text: "742"
+      - link "498k views 20k" [ref=e330] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=-o_tlZ-2JR0
+        - generic [ref=e332]:
+          - generic [ref=e333]: 498k views
+          - generic [ref=e334]:
+            - img [ref=e335]
+            - text: 20k
+      - link "16k views 745" [ref=e337] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=P2bHwn8efEs
+        - generic [ref=e339]:
+          - generic [ref=e340]: 16k views
+          - generic [ref=e341]:
+            - img [ref=e342]
+            - text: "745"
+      - link "16k views" [ref=e344] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=9TUntxAcGeI
+        - generic [ref=e347]: 16k views
+      - link "63k views 6k" [ref=e348] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=BWNfxZGeHaA
+        - generic [ref=e350]:
+          - generic [ref=e351]: 63k views
+          - generic [ref=e352]:
+            - img [ref=e353]
+            - text: 6k
+      - link "17k views 507" [ref=e355] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=RvzHZKSjQXU
+        - generic [ref=e357]:
+          - generic [ref=e358]: 17k views
+          - generic [ref=e359]:
+            - img [ref=e360]
+            - text: "507"
+      - link "13k views 331" [ref=e362] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=NspCnSnoYoo
+        - generic [ref=e364]:
+          - generic [ref=e365]: 13k views
+          - generic [ref=e366]:
+            - img [ref=e367]
+            - text: "331"
+      - link "75k views 2k" [ref=e369] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=JaabpZqUZw4
+        - generic [ref=e371]:
+          - generic [ref=e372]: 75k views
+          - generic [ref=e373]:
+            - img [ref=e374]
+            - text: 2k
+      - link "15k views 471" [ref=e376] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=X7w1b0wlzRo
+        - generic [ref=e378]:
+          - generic [ref=e379]: 15k views
+          - generic [ref=e380]:
+            - img [ref=e381]
+            - text: "471"
+      - link "14k views 384" [ref=e383] [cursor=pointer]:
+        - /url: https://youtube.com/watch?v=l5O8w6qJyks
+        - generic [ref=e385]:
+          - generic [ref=e386]: 14k views
+          - generic [ref=e387]:
+            - img [ref=e388]
+            - text: "384"
+  - contentinfo [ref=e390]:
+    - generic [ref=e393]:
+      - generic [ref=e395]:
+        - heading "Popular Categories" [level=5] [ref=e396]
+        - generic [ref=e397]:
+          - link "Cinematic" [ref=e398] [cursor=pointer]:
+            - /url: /music/category/cinematic
+          - link "Lofi" [ref=e399] [cursor=pointer]:
+            - /url: /music/category/lofi
+          - link "Chill" [ref=e400] [cursor=pointer]:
+            - /url: /music/category/chill
+          - link "Inspiring" [ref=e401] [cursor=pointer]:
+            - /url: /music/category/inspiring
+          - link "Upbeat" [ref=e402] [cursor=pointer]:
+            - /url: /music/category/upbeat
+      - generic [ref=e404]:
+        - heading "Links" [level=5] [ref=e405]
+        - generic [ref=e406]:
+          - link "Login" [ref=e407] [cursor=pointer]:
+            - /url: /sign-in
+          - link "FAQs" [ref=e408] [cursor=pointer]:
+            - /url: /faq
+          - link "Blog" [ref=e409] [cursor=pointer]:
+            - /url: /blog
+          - generic [ref=e410] [cursor=pointer]: Contact
+          - link "API" [ref=e411] [cursor=pointer]:
+            - /url: /api
+      - generic [ref=e413]:
+        - heading "Legal" [level=5] [ref=e414]
+        - generic [ref=e415]:
+          - link "Usage Policy" [ref=e416] [cursor=pointer]:
+            - /url: /usage-policy
+          - link "Free To Use License" [ref=e417] [cursor=pointer]:
+            - /url: /license
+          - link "Privacy Policy" [ref=e418] [cursor=pointer]:
+            - /url: /privacy-policy
+          - link "Terms of Service" [ref=e419] [cursor=pointer]:
+            - /url: /terms-of-service
+      - generic [ref=e421]:
+        - heading "Follow Us" [level=5] [ref=e422]
+        - generic [ref=e423]:
+          - link "Who Are We?" [ref=e424] [cursor=pointer]:
+            - /url: https://freetousemusic.com/
+          - link "YouTube" [ref=e425] [cursor=pointer]:
+            - /url: https://youtube.com/@FreeToUseMusic
+          - link "Spotify" [ref=e426] [cursor=pointer]:
+            - /url: https://open.spotify.com/user/11shkdqyaue5ptj4obc2m4j11
+          - link "Instagram" [ref=e427] [cursor=pointer]:
+            - /url: https://instagram.com/freetousemusic/
+          - link "Facebook" [ref=e428] [cursor=pointer]:
+            - /url: https://facebook.com/freetousemusic
+    - generic [ref=e431]:
+      - generic [ref=e432]: Copyright © 2026 Free To Use ApS, Denmark
+      - generic [ref=e434]:
+        - link:
+          - /url: /

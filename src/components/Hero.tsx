@@ -10,7 +10,6 @@ function PhotoCollage() {
     <div
       className="select-none"
       style={{ width: size }}
-      aria-hidden="true"
     >
       <div
         style={{
@@ -95,12 +94,12 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex flex-col"
-      style={{ paddingTop: '72px' }}
+      aria-labelledby="hero-heading"
+      className="min-h-screen flex flex-col pt-5 lg:pt-0"
     >
       {/* Main content */}
       <div className="flex-1 w-full px-4 sm:px-6 lg:px-10 xl:px-14 py-6 lg:py-10">
-        <div className="w-full grid gap-10 lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_440px] lg:gap-12 lg:items-start">
+        <div className="w-full grid gap-10 lg:grid-cols-[1fr_460px] xl:grid-cols-[1fr_520px] lg:gap-14 lg:items-start">
 
           {/* ── LEFT ── */}
           <motion.div {...motionProps} className="flex flex-col">
@@ -115,6 +114,7 @@ export function Hero() {
 
             <motion.h1
               {...itemProps}
+              id="hero-heading"
               className="font-serif font-normal leading-[1.06] mb-0"
               style={{ fontSize: HS, color: 'var(--c-text-1)' }}
             >
@@ -157,7 +157,7 @@ export function Hero() {
             initial={reduced ? false : { opacity: 0, x: 20 }}
             animate={reduced ? false : { opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.35 }}
-            className="flex flex-col lg:pt-6"
+            className="flex flex-col lg:pt-4"
           >
             <TerminalCard />
           </motion.div>

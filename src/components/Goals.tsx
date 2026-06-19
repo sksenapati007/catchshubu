@@ -46,7 +46,7 @@ export function Goals() {
   const vp = reduced ? undefined : { once: true, margin: '-60px' as const }
 
   return (
-    <section id="goals">
+    <section id="goals" aria-labelledby="goals-heading">
       <hr className="section-divider" />
 
       <div className="px-4 sm:px-6 lg:px-10 xl:px-14 py-[72px]">
@@ -62,6 +62,7 @@ export function Goals() {
         </motion.div>
 
         <motion.h2
+          id="goals-heading"
           initial={reduced ? false : { opacity: 0, y: 12 }}
           whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
           viewport={vp}

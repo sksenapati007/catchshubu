@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useRef, useState } from 'react'
 
 export type Theme = 'dark' | 'light'
 
@@ -7,22 +7,34 @@ interface ThemeContextValue {
   toggle: () => void
 }
 
+const osTheme = (): Theme =>
+  window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+
 const ThemeCtx = createContext<ThemeContextValue>({ theme: 'dark', toggle: () => {} })
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === 'undefined') return 'dark'
-    const stored = localStorage.getItem('theme') as Theme | null
-    if (stored === 'light' || stored === 'dark') return stored
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-  })
+  const [theme, setTheme] = useState<Theme>(osTheme)
+  const overridden = useRef(false)
 
+  // Apply to DOM
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
-    localStorage.setItem('theme', theme)
   }, [theme])
 
-  const toggle = () => setTheme(t => (t === 'dark' ? 'light' : 'dark'))
+  // Live-follow OS preference changes unless user has toggled this session
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-color-scheme: light)')
+    const handler = (e: MediaQueryListEvent) => {
+      if (!overridden.current) setTheme(e.matches ? 'light' : 'dark')
+    }
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+
+  const toggle = () => {
+    overridden.current = true
+    setTheme(t => (t === 'dark' ? 'light' : 'dark'))
+  }
 
   return <ThemeCtx.Provider value={{ theme, toggle }}>{children}</ThemeCtx.Provider>
 }

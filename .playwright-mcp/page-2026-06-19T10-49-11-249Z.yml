@@ -1,0 +1,77 @@
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link:
+          - /url: /music
+      - generic [ref=e6]:
+        - generic [ref=e8]:
+          - textbox "Search by tracks, artists, genres, etc." [ref=e9]
+          - img [ref=e10] [cursor=pointer]
+        - button "Usage Policy" [ref=e12] [cursor=pointer]:
+          - strong [ref=e13]: Usage Policy
+          - link:
+            - /url: /usage-policy
+        - img [ref=e17] [cursor=pointer]
+  - generic [ref=e23]:
+    - heading "Free lofi music for videos" [level=1] [ref=e24]
+    - paragraph [ref=e25]: Chill out to lofi hip hop beats in this royalty-free music collection. These mellow, no copyright tracks make perfect free background music for vlogs, study sessions, or any creative project. Add a relaxed, aesthetic vibe to your content and keep your audience coming back.
+  - generic [ref=e27]:
+    - generic:
+      - generic:
+        - heading "undefined lofi tracks" [level=4]
+      - generic:
+        - combobox:
+          - option "Staff Picks" [selected]
+          - option "Popular"
+          - option "Newest"
+          - option "Undiscovered"
+    - generic [ref=e32]:
+      - img [ref=e34] [cursor=pointer]
+      - img [ref=e37] [cursor=pointer]
+  - contentinfo [ref=e39]:
+    - generic [ref=e42]:
+      - generic [ref=e44]:
+        - heading "Popular Categories" [level=5] [ref=e45]
+        - generic [ref=e47]: ...
+      - generic [ref=e49]:
+        - heading "Links" [level=5] [ref=e50]
+        - generic [ref=e51]:
+          - link "Login" [ref=e52] [cursor=pointer]:
+            - /url: /sign-in
+          - link "FAQs" [ref=e53] [cursor=pointer]:
+            - /url: /faq
+          - link "Blog" [ref=e54] [cursor=pointer]:
+            - /url: /blog
+          - generic [ref=e55] [cursor=pointer]: Contact
+          - link "API" [ref=e56] [cursor=pointer]:
+            - /url: /api
+      - generic [ref=e58]:
+        - heading "Legal" [level=5] [ref=e59]
+        - generic [ref=e60]:
+          - link "Usage Policy" [ref=e61] [cursor=pointer]:
+            - /url: /usage-policy
+          - link "Free To Use License" [ref=e62] [cursor=pointer]:
+            - /url: /license
+          - link "Privacy Policy" [ref=e63] [cursor=pointer]:
+            - /url: /privacy-policy
+          - link "Terms of Service" [ref=e64] [cursor=pointer]:
+            - /url: /terms-of-service
+      - generic [ref=e66]:
+        - heading "Follow Us" [level=5] [ref=e67]
+        - generic [ref=e68]:
+          - link "Who Are We?" [ref=e69] [cursor=pointer]:
+            - /url: https://freetousemusic.com/
+          - link "YouTube" [ref=e70] [cursor=pointer]:
+            - /url: https://youtube.com/@FreeToUseMusic
+          - link "Spotify" [ref=e71] [cursor=pointer]:
+            - /url: https://open.spotify.com/user/11shkdqyaue5ptj4obc2m4j11
+          - link "Instagram" [ref=e72] [cursor=pointer]:
+            - /url: https://instagram.com/freetousemusic/
+          - link "Facebook" [ref=e73] [cursor=pointer]:
+            - /url: https://facebook.com/freetousemusic
+    - generic [ref=e76]:
+      - generic [ref=e77]: Copyright © 2026 Free To Use ApS, Denmark
+      - generic [ref=e79]:
+        - link:
+          - /url: /

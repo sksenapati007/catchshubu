@@ -28,6 +28,13 @@
 </head>
 
 <body>
+  <!-- Set data-theme before first paint to match OS preference instantly — no flash -->
+  <script>
+    document.documentElement.setAttribute(
+      'data-theme',
+      window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+    );
+  </script>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
