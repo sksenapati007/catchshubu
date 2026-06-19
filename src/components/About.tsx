@@ -115,23 +115,25 @@ export function About() {
                 className="font-serif font-normal mb-6"
                 style={{ fontSize: '28px', color: 'var(--c-text-1)' }}
               >
-                Engineer with a product heart
+                Still figuring things out, one ship at a time
               </h2>
 
               <div className="space-y-4 text-sm sm:text-base leading-relaxed" style={{ color: 'var(--c-text-2)' }}>
                 <p>
-                  I build things people rely on — payment systems processing millions of
-                  transactions, real-time platforms where a 100ms delay matters, iGaming
-                  infrastructure where correctness and speed are equally non-negotiable.
+                  I've spent the last few years working across payments, real-time systems,
+                  and connected hardware — enough variety to appreciate that the interesting
+                  problems usually live at the seams between things, not in any single layer.
                 </p>
                 <p>
-                  But I also hold a CSPO. Which means I sit in the room where requirements
-                  are written and push back when the right feature is being built the wrong
-                  way — or when the wrong feature is being built at all.
+                  I also hold a CSPO — not because I wanted to manage products, but because
+                  I kept finding myself more curious about <em style={{ color: 'var(--c-text-1)', fontStyle: 'normal' }}>why</em> we
+                  were building something than <em style={{ color: 'var(--c-text-1)', fontStyle: 'normal' }}>how</em>.
+                  The certification gave language to that instinct.
                 </p>
                 <p>
-                  Design engineering is the third angle: I care how the thing looks and
-                  feels in the hand, not just whether it ships.
+                  The design side crept in gradually. I find it hard to feel done with
+                  something that works technically but feels rough to use. Those two things
+                  are harder to separate than they look.
                 </p>
               </div>
             </motion.div>
