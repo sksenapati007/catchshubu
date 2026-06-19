@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
+// Pre-compute trail colours — avoids rgba string allocation every frame (GC pressure)
+const TRAIL_COLORS = Array.from({ length: 25 }, (_, ci) => {
+  const a = Math.max(0.20, 1 - ci * 0.05).toFixed(2)
+  return `rgba(160,210,0,${a})`
+})
+
 const WORDS = [
   // Software engineering
   'ALGORITHM', 'RECURSION', 'COMPILE', 'DEPLOY', 'REFACTOR',
@@ -8,16 +14,34 @@ const WORDS = [
   'DAEMON', 'ENDPOINT', 'FUNCTION', 'INSTANCE', 'LAMBDA',
   'MODULE', 'PIPELINE', 'RUNTIME', 'SCHEMA', 'THREAD',
   'TOKEN', 'WEBHOOK', 'CLOSURE', 'PROMISE', 'INTERFACE',
+  'INVARIANT', 'IDEMPOTENT', 'LATENCY', 'DEBOUNCE', 'THROTTLE',
+  'MIGRATE', 'REBASE', 'BRANCH', 'MERGE', 'RELEASE',
+  'SCAFFOLD', 'LIBRARY', 'PACKAGE', 'REGISTRY', 'LINTER',
+  'PARSER', 'LEXER', 'ABSTRACT', 'GENERIC', 'MUTABLE',
+  'REACTIVE', 'OBSERVER', 'SINGLETON', 'FACTORY', 'PROXY',
+  'FALLBACK', 'TIMEOUT', 'RETRY', 'CIRCUIT', 'SHARD',
+  'CLUSTER', 'REPLICA', 'INDEX', 'QUERY', 'STREAM',
   // Design
   'WIREFRAME', 'PROTOTYPE', 'COMPONENT', 'TYPOGRAPHY', 'HIERARCHY',
   'CONTRAST', 'MOTION', 'TRANSITION', 'INTERACTION', 'ATOMIC',
   'HEURISTIC', 'GESTALT', 'AFFORDANCE', 'GRID', 'SPACING',
+  'KERNING', 'BASELINE', 'PALETTE', 'OPACITY', 'SHADOW',
+  'RADIUS', 'PADDING', 'MARGIN', 'VIEWPORT', 'BREAKPOINT',
+  'ICON', 'BADGE', 'TOOLTIP', 'MODAL', 'DRAWER',
+  'LAYOUT', 'CANVAS', 'FRAME', 'LAYER', 'VARIANT',
+  'TOKEN', 'THEME', 'SYSTEM', 'PATTERN', 'SURFACE',
   // Product
   'ROADMAP', 'SPRINT', 'BACKLOG', 'VELOCITY', 'ITERATE',
   'METRIC', 'PIVOT', 'FUNNEL', 'RETENTION', 'COHORT',
   'HYPOTHESIS', 'OKR', 'MVP', 'PERSONA', 'TRACTION',
-  'BASELINE', 'BENCHMARK', 'FEATURE',
+  'DISCOVERY', 'LAUNCH', 'ADOPTION', 'CHURN', 'SEGMENT',
+  'INSIGHT', 'SIGNAL', 'EXPERIMENT', 'VALIDATE', 'EPIC',
+  'STORY', 'TICKET', 'ALIGNMENT', 'SCOPE', 'IMPACT',
+  'BENCHMARK', 'FEATURE', 'BASELINE', 'EFFORT', 'STAKEHOLDER',
 ]
+
+// Minimum splash duration — human attention span target (milliseconds)
+const MIN_DISPLAY_MS = 18000
 
 export function PageLoader() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -36,61 +60,68 @@ export function PageLoader() {
     canvas.height = H
 
     const FONT_SIZE   = 15
-    const COL_WIDTH   = Math.round(FONT_SIZE * 1.7)
+    const COL_WIDTH   = Math.round(FONT_SIZE * 2.2)
     const LINE_HEIGHT = FONT_SIZE + 5
+    const MAX_TRAIL   = 25
     const cols        = Math.floor(W / COL_WIDTH)
 
     ctx.font      = `${FONT_SIZE}px "JetBrains Mono", monospace`
     ctx.textAlign = 'left'
+    ctx.shadowBlur = 0
 
-    // Black base
     ctx.fillStyle = '#000'
     ctx.fillRect(0, 0, W, H)
 
-    // Columns start near the top (small negative offset) so words
-    // have time to traverse the full screen during the animation window
+    // Spread initial y so canvas looks full from frame 1:
+    // range from -(MAX_TRAIL * LINE_HEIGHT) to H * 0.55
+    // — columns already on-screen (y > 0) cover top/mid/bottom immediately,
+    //   columns above-screen (y < 0) cascade in over the first few seconds.
+    const spreadTop = MAX_TRAIL * LINE_HEIGHT
+    const spreadBot = Math.round(H * 0.55)
     const state = Array.from({ length: cols }, () => ({
       word:  WORDS[Math.floor(Math.random() * WORDS.length)],
-      y:    -Math.random() * H * 0.35,
-      speed: 1.4 + Math.random() * 1.4,
+      y:     Math.random() * (spreadBot + spreadTop) - spreadTop,
+      speed: 1.0 + Math.random() * 0.8,   // 60–108 px/s at 60fps → ~15–20s to traverse H
     }))
 
     let raf: number
+    let exitStarted = false
+    const startTime = Date.now()
 
     const draw = () => {
-      // Slow fade so previous chars dim gradually without blurring
-      ctx.fillStyle = 'rgba(0,0,0,0.15)'
+      ctx.fillStyle = 'rgba(0,0,0,0.13)'
       ctx.fillRect(0, 0, W, H)
-
-      // No shadow/blur on ctx — it smears glyphs and kills readability
-      ctx.shadowBlur = 0
 
       for (let i = 0; i < cols; i++) {
         const { word, y, speed } = state[i]
         const x = i * COL_WIDTH
 
-        for (let ci = 0; ci < word.length; ci++) {
+        const limit = Math.min(word.length, MAX_TRAIL)
+        for (let ci = 0; ci < limit; ci++) {
           const charY = y + ci * LINE_HEIGHT
           if (charY < -LINE_HEIGHT || charY > H + LINE_HEIGHT) continue
-
-          if (ci === 0) {
-            // Lead: pure white-green, fully opaque, sharp
-            ctx.fillStyle = '#D4FF40'
-          } else {
-            // Trail: stays legible for the full word length
-            const alpha = Math.max(0.25, 1 - ci * 0.07)
-            ctx.fillStyle = `rgba(160,210,0,${alpha})`
-          }
-
-          ctx.fillText(word[ci], x, charY)
+          ctx.fillStyle = ci === 0
+            ? '#D4FF40'
+            : TRAIL_COLORS[Math.min(ci, TRAIL_COLORS.length - 1)]
+          ctx.fillText(word[ci % word.length], x, charY)
         }
 
         state[i].y += speed
 
-        if (y > H + word.length * LINE_HEIGHT) {
+        // Exit only after MIN_DISPLAY_MS AND once a lead char reaches the bottom
+        if (state[i].y >= H && !exitStarted) {
+          const elapsed = Date.now() - startTime
+          if (elapsed >= MIN_DISPLAY_MS) {
+            exitStarted = true
+            setExiting(true)
+            setTimeout(() => setGone(true), 800)
+          }
+        }
+
+        if (y > H + MAX_TRAIL * LINE_HEIGHT) {
           state[i].word  = WORDS[Math.floor(Math.random() * WORDS.length)]
-          state[i].y     = -Math.random() * H * 0.3
-          state[i].speed = 3.0 + Math.random() * 3.5
+          state[i].y     = -Math.random() * H * 0.15
+          state[i].speed = 1.0 + Math.random() * 0.8
         }
       }
 
@@ -99,14 +130,7 @@ export function PageLoader() {
 
     raf = requestAnimationFrame(draw)
 
-    const t1 = setTimeout(() => setExiting(true), 4000)
-    const t2 = setTimeout(() => setGone(true),    4800)
-
-    return () => {
-      cancelAnimationFrame(raf)
-      clearTimeout(t1)
-      clearTimeout(t2)
-    }
+    return () => cancelAnimationFrame(raf)
   }, [])
 
   if (gone) return null
@@ -115,7 +139,12 @@ export function PageLoader() {
     <motion.div
       animate={{ opacity: exiting ? 0 : 1 }}
       transition={{ duration: 0.7, ease: 'easeInOut' }}
-      onClick={() => { setExiting(true); setTimeout(() => setGone(true), 700) }}
+      onClick={() => {
+        if (!exiting) {
+          setExiting(true)
+          setTimeout(() => setGone(true), 700)
+        }
+      }}
       style={{
         position:      'fixed',
         inset:         0,

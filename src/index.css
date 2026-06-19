@@ -22,7 +22,7 @@
   /* Text */
   --c-text-1:  #E8E6E0;   /* headings, primary */
   --c-text-2:  #888580;   /* body, descriptions */
-  --c-text-3:  #767270;   /* labels, captions — WCAG AA ≥ 4.5:1 on dark bg */
+  --c-text-3:  #848180;   /* labels, captions — 5.16:1 on #0A0A0A, 4.9:1 on #111 */
 
   /* Accent — acid green */
   --c-accent:     #C8FF00;
@@ -73,12 +73,12 @@
   /* Text */
   --c-text-1:  #1C1B19;
   --c-text-2:  #6A6860;
-  --c-text-3:  #707070;   /* labels, captions — WCAG AA ≥ 4.5:1 on light bg */
+  --c-text-3:  #636060;   /* labels, captions — 5.5:1 on base, 5.0:1 on surface, 4.6:1 on surface-alt */
 
-  /* Accent — dark olive green (contrast ≥ 4.5:1 on light bg) */
-  --c-accent:     #4A7000;
-  --c-accent-20:  rgba(74, 112, 0, 0.15);
-  --c-accent-30:  rgba(74, 112, 0, 0.25);
+  /* Accent — deep magenta (contrast 6.0:1 on light bg, matches card spotlight hue) */
+  --c-accent:     #B30077;
+  --c-accent-20:  rgba(179, 0, 119, 0.15);
+  --c-accent-30:  rgba(179, 0, 119, 0.25);
 
   /* shadcn tokens for light mode */
   --background: 43 13% 96%;
@@ -87,27 +87,27 @@
   --card-foreground: 35 8% 11%;
   --popover: 40 11% 93%;
   --popover-foreground: 35 8% 11%;
-  --primary: 73 100% 24%;
+  --primary: 320 100% 35%;
   --primary-foreground: 43 13% 96%;
   --secondary: 40 10% 89%;
   --secondary-foreground: 35 8% 11%;
   --muted: 40 10% 89%;
   --muted-foreground: 36 4% 41%;
-  --accent: 73 100% 24%;
+  --accent: 320 100% 35%;
   --accent-foreground: 43 13% 96%;
   --destructive: 0 75% 45%;
   --destructive-foreground: 0 0% 100%;
   --border: 37 7% 82%;
   --input: 40 10% 89%;
-  --ring: 73 100% 24%;
+  --ring: 320 100% 35%;
   --sidebar-background: 40 11% 93%;
   --sidebar-foreground: 35 8% 11%;
-  --sidebar-primary: 73 100% 24%;
+  --sidebar-primary: 320 100% 35%;
   --sidebar-primary-foreground: 43 13% 96%;
   --sidebar-accent: 40 10% 89%;
   --sidebar-accent-foreground: 35 8% 11%;
   --sidebar-border: 37 7% 82%;
-  --sidebar-ring: 73 100% 24%;
+  --sidebar-ring: 320 100% 35%;
 }
 
 /* ============================================================
@@ -211,6 +211,46 @@
   }
   [data-theme="light"] .portrait-img {
     filter: none;
+  }
+
+  /* ── Neumorphism — terminal card ── */
+  .terminal-neomorph {
+    border: none !important;
+    box-shadow:
+      -4px -4px 10px rgba(45, 45, 45, 0.55),
+      5px  5px  16px rgba(0, 0, 0, 0.95),
+      inset 0 1px 0   rgba(255, 255, 255, 0.04);
+  }
+  [data-theme="light"] .terminal-neomorph {
+    box-shadow:
+      0 24px 56px rgba(0, 0, 0, 0.22),
+      0  8px 20px rgba(0, 0, 0, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.10) !important;
+  }
+
+  /* ── Glassmorphism — sidebar nav ── */
+  .glass-sidebar {
+    background: rgba(10, 10, 10, 0.72) !important;
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+  }
+  [data-theme="light"] .glass-sidebar {
+    background: rgba(247, 245, 240, 0.78) !important;
+    border-right: 1px solid rgba(0, 0, 0, 0.07) !important;
+  }
+
+  /* ── Glassmorphism — mobile bottom nav ── */
+  .glass-mobile-nav {
+    background: rgba(10, 10, 10, 0.72) !important;
+    backdrop-filter: blur(14px) saturate(1.3);
+    -webkit-backdrop-filter: blur(14px) saturate(1.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  }
+  [data-theme="light"] .glass-mobile-nav {
+    background: rgba(247, 245, 240, 0.80) !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.07) !important;
   }
 
   /* Film grain — fixed overlay, pointer-events-none */

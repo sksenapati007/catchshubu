@@ -54,10 +54,9 @@ export function TerminalCard() {
 
   return (
     <div
-      className="w-full overflow-hidden rounded-[6px]"
+      className="w-full overflow-hidden rounded-[6px] terminal-neomorph"
       style={{
         background: '#0D0D0D',
-        border: '1px solid #1E1E1E',
         fontFamily: '"JetBrains Mono", monospace',
         fontSize: 'clamp(12px, 1.1vw, 14px)',
         minHeight: 'clamp(0px, 42vh, 380px)',

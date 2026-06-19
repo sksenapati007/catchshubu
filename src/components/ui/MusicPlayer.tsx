@@ -76,11 +76,15 @@ export function MusicPlayer() {
           {!expanded ? (
             <motion.div
               key="mini"
+              role="button"
+              tabIndex={0}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.12 }}
               onClick={togglePlay}
+              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); togglePlay() } }}
+              aria-label={playing ? 'Pause music' : 'Play music'}
               style={{
                 width: '56px',
                 height: '56px',
@@ -90,7 +94,6 @@ export function MusicPlayer() {
                 cursor: 'pointer',
                 position: 'relative',
               }}
-              title={playing ? 'Pause' : 'Play music'}
             >
               {/* Vinyl disc */}
               <div
@@ -150,7 +153,7 @@ export function MusicPlayer() {
                   transform: playing ? 'rotate(-10deg)' : 'rotate(30deg)',
                   transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}>
-                  {/* Stylus tip (needle) */}
+                  {/* Stylus tip (needle) — always green, player bg is always dark */}
                   <div style={{
                     position: 'absolute',
                     bottom: '-3px',
@@ -159,8 +162,8 @@ export function MusicPlayer() {
                     width: '4px',
                     height: '4px',
                     borderRadius: '50%',
-                    background: 'var(--c-accent, #C8FF00)',
-                    boxShadow: playing ? '0 0 5px var(--c-accent, #C8FF00)' : 'none',
+                    background: '#C8FF00',
+                    boxShadow: playing ? '0 0 5px #C8FF00' : 'none',
                     transition: 'box-shadow 0.4s ease',
                   }} />
                 </div>
@@ -178,14 +181,14 @@ export function MusicPlayer() {
                 }} />
               </div>
 
-              {/* Play/Pause icon overlay — stops rotating even when disc spins */}
+              {/* Play/Pause icon overlay — always uses green since player bg is always dark */}
               <div style={{
                 position: 'absolute',
                 inset: 0,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'var(--c-accent, #C8FF00)',
+                color: '#C8FF00',
                 transition: 'color 300ms ease',
                 pointerEvents: 'none',
               }}>
@@ -253,7 +256,7 @@ export function MusicPlayer() {
                   <p style={{
                     fontFamily: '"JetBrains Mono", monospace',
                     fontSize: '9px',
-                    color: '#555',
+                    color: '#888580',
                     letterSpacing: '0.04em',
                     lineHeight: 1.3,
                     margin: 0,
@@ -325,7 +328,7 @@ export function MusicPlayer() {
                       <span style={{
                         fontFamily: '"Inter", system-ui, sans-serif',
                         fontSize: '11px',
-                        color: isActive ? '#E8E6E0' : '#555',
+                        color: isActive ? '#E8E6E0' : '#888580',
                         fontWeight: isActive ? 500 : 400,
                         flex: 1,
                         whiteSpace: 'nowrap',
@@ -338,7 +341,7 @@ export function MusicPlayer() {
                       <span style={{
                         fontFamily: '"JetBrains Mono", monospace',
                         fontSize: '8px',
-                        color: '#333',
+                        color: '#7A7878',
                         letterSpacing: '0.04em',
                         flexShrink: 0,
                         paddingLeft: '6px',

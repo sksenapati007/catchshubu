@@ -71,8 +71,8 @@ export function Sidebar() {
       {/* Desktop sidebar */}
       <nav
         aria-label="Main navigation"
-        className="hidden lg:flex fixed left-0 top-0 z-50 h-screen w-[52px] flex-col items-center py-6"
-        style={{ background: 'var(--c-base)', borderRight: '1px solid var(--c-border)', transition: 'background 250ms ease, border-color 250ms ease' }}
+        className="hidden lg:flex fixed left-0 top-0 z-50 h-screen w-[52px] flex-col items-center py-6 glass-sidebar"
+        style={{ transition: 'background 250ms ease, border-color 250ms ease' }}
       >
         <div className="flex flex-col items-center gap-5 flex-1">
           {NAV_ITEMS.map(item => <NavItem key={item.id} item={item} active={active} />)}
@@ -135,8 +135,8 @@ export function Sidebar() {
       {/* Mobile bottom nav — icon-only, all 6 sections + theme toggle */}
       <nav
         aria-label="Mobile navigation"
-        className="flex lg:hidden fixed bottom-0 left-0 right-0 z-50 h-12 items-center justify-around"
-        style={{ borderTop: '1px solid var(--c-border)', background: 'var(--c-base)', backdropFilter: 'blur(12px)' }}
+        className="flex lg:hidden fixed bottom-0 left-0 right-0 z-50 h-12 items-center justify-around glass-mobile-nav"
+        style={{ transition: 'background 250ms ease, border-color 250ms ease' }}
       >
         {NAV_ITEMS.filter(i => i.mobile).map(({ id, icon: Icon, label, href }) => {
           const isActive = active === id
