@@ -9,10 +9,12 @@ import { Footer } from "@/components/Footer"
 import { CustomCursor } from "@/components/ui/CustomCursor"
 import { PageSpotlight } from "@/components/ui/PageSpotlight"
 import { MusicPlayer } from "@/components/ui/MusicPlayer"
+import { PageLoader } from "@/components/ui/PageLoader"
 
 const Index = () => {
   return (
     <div className="relative min-h-screen">
+      <PageLoader />
       <div className="grain" aria-hidden="true" />
       <PageSpotlight />
       <CustomCursor />

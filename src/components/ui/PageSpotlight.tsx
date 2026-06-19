@@ -18,8 +18,8 @@ export function PageSpotlight() {
 
     const paint = () => {
       const isLight = document.documentElement.getAttribute('data-theme') === 'light'
-      const color = isLight ? 'hsl(320 100% 50% / 0.08)' : 'hsl(var(--accent) / 0.04)'
-      el.style.background = `radial-gradient(700px circle at ${cx}px ${cy}px, ${color}, transparent 75%)`
+      const color = isLight ? 'hsl(320 100% 50% / 0.08)' : 'hsl(var(--accent) / 0.10)'
+      el.style.background = `radial-gradient(900px circle at ${cx}px ${cy}px, ${color}, transparent 75%)`
     }
 
     const onMove = (e: MouseEvent) => {

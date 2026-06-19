@@ -3,6 +3,17 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { SkipBack, SkipForward, Play, Pause, Volume2, VolumeX } from 'lucide-react'
 import { useMusic, PLAYLIST } from '@/context/MusicContext'
 
+// Per-track color gradients used as album art
+const TRACK_ART = [
+  'linear-gradient(135deg,#667eea 0%,#764ba2 100%)',
+  'linear-gradient(135deg,#f093fb 0%,#f5576c 100%)',
+  'linear-gradient(135deg,#4facfe 0%,#00f2fe 100%)',
+  'linear-gradient(135deg,#43e97b 0%,#38f9d7 100%)',
+  'linear-gradient(135deg,#fa709a 0%,#fee140 100%)',
+  'linear-gradient(135deg,#a18cd1 0%,#fbc2eb 100%)',
+  'linear-gradient(135deg,#fda085 0%,#f6d365 100%)',
+]
+
 const BTN: CSSProperties = {
   background: 'none',
   border: 'none',
@@ -107,13 +118,18 @@ export function MusicPlayer() {
                   flexShrink: 0,
                 }}
               >
-                {/* Spindle hole */}
+                {/* Center label with track color */}
                 <div style={{
-                  width: '6px',
-                  height: '6px',
+                  width: '18px',
+                  height: '18px',
                   borderRadius: '50%',
-                  background: '#0D0D0D',
-                }} />
+                  background: TRACK_ART[currentIndex % TRACK_ART.length],
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                  <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#0D0D0D' }} />
+                </div>
               </div>
 
               {/* Play/Pause icon overlay — stops rotating even when disc spins */}
@@ -148,6 +164,26 @@ export function MusicPlayer() {
                 gap: '6px',
                 padding: '10px 10px 8px',
               }}>
+                {/* Album thumbnail */}
+                <div style={{
+                  width: '34px',
+                  height: '34px',
+                  borderRadius: '5px',
+                  background: TRACK_ART[currentIndex % TRACK_ART.length],
+                  flexShrink: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '13px',
+                  fontFamily: '"JetBrains Mono", monospace',
+                  fontWeight: 700,
+                  color: 'rgba(255,255,255,0.9)',
+                  letterSpacing: '-0.02em',
+                  userSelect: 'none',
+                }}>
+                  {currentTrack.title[0]}
+                </div>
+
                 <button style={BTN} onClick={prevTrack} aria-label="Previous track"
                   onMouseEnter={e => (e.currentTarget.style.color = '#E8E6E0')}
                   onMouseLeave={e => (e.currentTarget.style.color = '#888580')}>

@@ -7,10 +7,7 @@ import { ChevronDown } from 'lucide-react'
 function PhotoCollage() {
   const size = 'clamp(140px, 16vw, 200px)'
   return (
-    <div
-      className="select-none"
-      style={{ width: size }}
-    >
+    <div className="select-none" style={{ width: size }}>
       <div
         style={{
           width: '100%',
@@ -34,6 +31,17 @@ function PhotoCollage() {
           }}
         />
       </div>
+      <p style={{
+        textAlign: 'center',
+        marginTop: '10px',
+        fontFamily: '"JetBrains Mono", monospace',
+        fontSize: '11px',
+        letterSpacing: '0.1em',
+        textTransform: 'uppercase',
+        color: 'var(--c-text-3)',
+      }}>
+        Shubhendu Senapati
+      </p>
     </div>
   )
 }
@@ -95,21 +103,17 @@ export function Hero() {
     <section
       id="home"
       aria-labelledby="hero-heading"
-      className="min-h-screen flex flex-col pt-5 lg:pt-0"
+      className="flex flex-col pt-5 lg:pt-0 lg:min-h-screen"
     >
       {/* Main content */}
-      <div className="flex-1 w-full px-4 sm:px-6 lg:px-10 xl:px-14 py-6 lg:py-10">
-        <div className="w-full grid gap-10 lg:grid-cols-[1fr_460px] xl:grid-cols-[1fr_520px] lg:gap-14 lg:items-start">
+      <div className="flex-1 w-full px-4 sm:px-6 lg:px-10 xl:px-14 py-6 lg:py-8 lg:flex lg:items-center">
+        <div className="w-full grid gap-10 lg:grid-cols-[1fr_460px] xl:grid-cols-[1fr_520px] lg:gap-14 lg:items-center">
 
           {/* ── LEFT ── */}
           <motion.div {...motionProps} className="flex flex-col">
 
             <motion.div {...itemProps} className="mb-6">
               <PhotoCollage />
-            </motion.div>
-
-            <motion.div {...itemProps} className="mb-4">
-              <span className="eyebrow">catchshubu.dev</span>
             </motion.div>
 
             <motion.h1
@@ -166,7 +170,7 @@ export function Hero() {
       </div>
 
       {/* Scroll hint — pinned to bottom center */}
-      <div className="flex justify-center pb-8 lg:pb-10">
+      <div className="flex justify-center pb-5 lg:pb-8">
         <ScrollHint reduced={reduced} />
       </div>
     </section>

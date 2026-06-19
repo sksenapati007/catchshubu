@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 
 const RADIUS_DEFAULT  = 50   // px diameter — inverting circle at rest
-const RADIUS_MAGNETIC = 50   // px diameter — same size when snapped
+const RADIUS_MAGNETIC = 50   // px diameter — same size when near magnetic
 const LERP_DEFAULT    = 0.12 // smoothing at rest
-const LERP_MAGNETIC   = 0.22 // faster catch-up when snapped
+const LERP_MAGNETIC   = 0.38 // faster catch-up near magnetic elements
+const MAGNETIC_RANGE  = 90   // px radius — proximity pull starts here
 
 const MAGNETIC_SELECTOR = '[data-magnetic]'
 
@@ -63,14 +64,30 @@ export function CustomCursor() {
       s.mouseX = e.clientX
       s.mouseY = e.clientY
 
-      const els = document.elementsFromPoint(e.clientX, e.clientY)
+      // Proximity-based magnetic attraction: scan all [data-magnetic] elements
+      // and pull the ring towards the nearest one within MAGNETIC_RANGE
+      const magneticEls = document.querySelectorAll<HTMLElement>(MAGNETIC_SELECTOR)
+      let closestEl: HTMLElement | null = null
+      let closestDist = MAGNETIC_RANGE
 
-      // Magnetic snap
-      const target = els.find(el => el.matches(MAGNETIC_SELECTOR)) as HTMLElement | undefined
-      if (target) {
-        const rect = target.getBoundingClientRect()
-        s.targetX = rect.left + rect.width  / 2
-        s.targetY = rect.top  + rect.height / 2
+      magneticEls.forEach(el => {
+        const r = el.getBoundingClientRect()
+        const cx = r.left + r.width  / 2
+        const cy = r.top  + r.height / 2
+        const dist = Math.hypot(e.clientX - cx, e.clientY - cy)
+        if (dist < closestDist) { closestDist = dist; closestEl = el }
+      })
+
+      if (closestEl) {
+        const r = (closestEl as HTMLElement).getBoundingClientRect()
+        const elemCX = r.left + r.width  / 2
+        const elemCY = r.top  + r.height / 2
+        const dx = elemCX - e.clientX
+        const dy = elemCY - e.clientY
+        // Pull strength: 0 at MAGNETIC_RANGE edge → 0.55 at element center
+        const pull = 0.55 * (1 - closestDist / MAGNETIC_RANGE)
+        s.targetX = e.clientX + dx * pull
+        s.targetY = e.clientY + dy * pull
         s.radius  = RADIUS_MAGNETIC
         s.lerp    = LERP_MAGNETIC
       } else {
