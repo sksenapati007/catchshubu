@@ -2,12 +2,21 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
 const WORDS = [
-  'ΤΕΧΝΗ', 'ΛΟΓΟΣ', 'ΚΟΣΜΟΣ', 'ΑΡΧΗ', 'ΑΡΙΘΜΟΣ', 'ΜΗΧΑΝΗ',
-  'ΑΥΤΟΜΑΤΟΝ', 'ΣΥΣΤΗΜΑ', 'ΚΥΒΕΡΝΗΤΗΣ', 'ΕΝΕΡΓΕΙΑ', 'ΔΥΝΑΜΙΣ',
-  'ΑΝΑΛΥΣΙΣ', 'ΦΥΣΙΣ', 'ΔΙΚΤΥΟΝ', 'ΧΑΟΣ', 'ΤΕΛΟΣ', 'ΛΟΓΙΚΗ',
-  'MACHINA', 'CALCULUS', 'MATRIX', 'NEXUS', 'CURSOR',
-  'DATUM', 'CODEX', 'RECURSIO', 'ITERATIO', 'SYSTEMA',
-  'ALGORITHMVS', 'ARCHITECTURA', 'PROCESSUS', 'INGENIUM',
+  // Software engineering
+  'ALGORITHM', 'RECURSION', 'COMPILE', 'DEPLOY', 'REFACTOR',
+  'ASYNC', 'BINARY', 'CACHE', 'COMMIT', 'CONTAINER',
+  'DAEMON', 'ENDPOINT', 'FUNCTION', 'INSTANCE', 'LAMBDA',
+  'MODULE', 'PIPELINE', 'RUNTIME', 'SCHEMA', 'THREAD',
+  'TOKEN', 'WEBHOOK', 'CLOSURE', 'PROMISE', 'INTERFACE',
+  // Design
+  'WIREFRAME', 'PROTOTYPE', 'COMPONENT', 'TYPOGRAPHY', 'HIERARCHY',
+  'CONTRAST', 'MOTION', 'TRANSITION', 'INTERACTION', 'ATOMIC',
+  'HEURISTIC', 'GESTALT', 'AFFORDANCE', 'GRID', 'SPACING',
+  // Product
+  'ROADMAP', 'SPRINT', 'BACKLOG', 'VELOCITY', 'ITERATE',
+  'METRIC', 'PIVOT', 'FUNNEL', 'RETENTION', 'COHORT',
+  'HYPOTHESIS', 'OKR', 'MVP', 'PERSONA', 'TRACTION',
+  'BASELINE', 'BENCHMARK', 'FEATURE',
 ]
 
 export function PageLoader() {
@@ -43,7 +52,7 @@ export function PageLoader() {
     const state = Array.from({ length: cols }, () => ({
       word:  WORDS[Math.floor(Math.random() * WORDS.length)],
       y:    -Math.random() * H * 0.35,
-      speed: 3.0 + Math.random() * 3.5,
+      speed: 1.4 + Math.random() * 1.4,
     }))
 
     let raf: number

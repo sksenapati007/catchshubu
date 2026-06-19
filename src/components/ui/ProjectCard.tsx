@@ -22,6 +22,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
     setSpotPos({ x: e.clientX - rect.left, y: e.clientY - rect.top })
   }
 
+  const spotColor = document.documentElement.getAttribute('data-theme') === 'light'
+    ? 'hsl(320 100% 50% / 0.12)'
+    : 'hsl(var(--accent) / 0.12)'
+
   return (
     <article
       role="listitem"
@@ -49,7 +53,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           inset: 0,
           opacity: spotVisible ? 1 : 0,
           transition: 'opacity 350ms ease',
-          background: `radial-gradient(280px circle at ${spotPos.x}px ${spotPos.y}px, hsl(var(--accent) / 0.09), transparent 70%)`,
+          background: `radial-gradient(280px circle at ${spotPos.x}px ${spotPos.y}px, ${spotColor}, transparent 70%)`,
           zIndex: 0,
         }}
       />

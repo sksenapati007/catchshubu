@@ -132,6 +132,52 @@ export function MusicPlayer() {
                 </div>
               </div>
 
+              {/* Tonearm assembly — pivot at (44,10), arm length 22px */}
+              <div
+                aria-hidden="true"
+                style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
+              >
+                {/* Arm — rotates around its pivot (top-center) */}
+                <div style={{
+                  position: 'absolute',
+                  top: '10px',
+                  left: '43px',
+                  width: '2px',
+                  height: '22px',
+                  background: 'linear-gradient(to bottom, #c0c0c0 0%, #888 60%, #666 100%)',
+                  borderRadius: '1px 1px 2px 2px',
+                  transformOrigin: '1px 0px',
+                  transform: playing ? 'rotate(-10deg)' : 'rotate(30deg)',
+                  transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+                }}>
+                  {/* Stylus tip (needle) */}
+                  <div style={{
+                    position: 'absolute',
+                    bottom: '-3px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '4px',
+                    height: '4px',
+                    borderRadius: '50%',
+                    background: 'var(--c-accent, #C8FF00)',
+                    boxShadow: playing ? '0 0 5px var(--c-accent, #C8FF00)' : 'none',
+                    transition: 'box-shadow 0.4s ease',
+                  }} />
+                </div>
+
+                {/* Pivot bearing — small dome at rotation center */}
+                <div style={{
+                  position: 'absolute',
+                  top: '6px',
+                  left: '40px',
+                  width: '8px',
+                  height: '8px',
+                  borderRadius: '50%',
+                  background: 'radial-gradient(circle at 35% 35%, #aaa, #3a3a3a)',
+                  border: '1px solid #555',
+                }} />
+              </div>
+
               {/* Play/Pause icon overlay — stops rotating even when disc spins */}
               <div style={{
                 position: 'absolute',
