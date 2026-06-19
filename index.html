@@ -25,11 +25,18 @@
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@400;500&display=swap"
     rel="stylesheet" />
-  <script type="module" crossorigin src="/assets/index-BdLy7zOu.js"></script>
+  <script type="module" crossorigin src="/assets/index-CR5vlb_K.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-CtFwmmvN.css">
 </head>
 
 <body>
+  <!-- Set data-theme before first paint to match OS preference instantly — no flash -->
+  <script>
+    document.documentElement.setAttribute(
+      'data-theme',
+      window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+    );
+  </script>
   <div id="root"></div>
 </body>
 
